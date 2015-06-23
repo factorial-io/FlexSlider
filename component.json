@@ -12,6 +12,12 @@
   "styles": [
     "flexslider.css"
   ],
+  "fonts": [
+    "font/flexslider-icon.eot",
+    "font/flexslider-icon.svg",
+    "font/flexslider-icon.ttf",
+    "font/flexslider-icon.woff"
+  ],
   "keywords": [
     "flexslider",
     "jquery",
