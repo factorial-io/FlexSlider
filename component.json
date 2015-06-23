@@ -1,6 +1,6 @@
 {
   "name": "flexslider",
-  "version": "2.5.2",
+  "version": "2.5.3",
   "repo": "factorial-io/FlexSlider",
   "authors": [
     "WooThemes <jeff@woothemes.com>"
@@ -13,10 +13,10 @@
     "flexslider.css"
   ],
   "fonts": [
-    "font/flexslider-icon.eot",
-    "font/flexslider-icon.svg",
-    "font/flexslider-icon.ttf",
-    "font/flexslider-icon.woff"
+    "fonts/flexslider-icon.eot",
+    "fonts/flexslider-icon.svg",
+    "fonts/flexslider-icon.ttf",
+    "fonts/flexslider-icon.woff"
   ],
   "keywords": [
     "flexslider",
