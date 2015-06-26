@@ -1,4 +1,4 @@
-/** --define FlexSlider; use strict */
+/** define FlexSlider; use strict */
 
 :root {
 
@@ -39,8 +39,4 @@
 
   --flex-pauseplay-icon-play: '\f003';
   --flex-pauseplay-icon-pause: '\f004';
-}
-
-.FlexSlider {
-
 }

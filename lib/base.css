@@ -1,0 +1,47 @@
+/** define FlexSlider; use strict */
+
+.flexslider {
+  margin: 0;
+  padding: 0;
+}
+
+.flexslider .slides > li {
+  display: none;
+  -webkit-backface-visibility: hidden;
+}
+
+.flexslider .slides img {
+  width: 100%;
+  display: block;
+}
+
+/*
+ * Clearfix for the .slides element
+ */
+
+.flexslider .slides:after {
+  content: "\0020";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+html[xmlns] .flexslider .slides {
+  display: block;
+}
+
+* html .flexslider .slides {
+  height: 1%;
+}
+
+/*
+ * No JavaScript Fallback
+ * If you are not using another script, such as Modernizr, make sure you
+ * include js that eliminates this class on page load
+ */
+
+.no-js .flexslider .slides > li:first-child {
+  display: block;
+}
