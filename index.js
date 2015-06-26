@@ -1,1 +1,1 @@
-require('./lib/flexslider.css');
+require('./lib/flex-slider.css');
