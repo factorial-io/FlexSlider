@@ -1,16 +1,16 @@
-/** define FlexSlider; use strict */
+/** !define FlexSlider; use strict */
 
-.flexslider {
+.FlexSlider {
   margin: 0;
   padding: 0;
 }
 
-.flexslider .slides > li {
+.FlexSlider .slides > li {
   display: none;
   -webkit-backface-visibility: hidden;
 }
 
-.flexslider .slides img {
+.FlexSlider .slides img {
   width: 100%;
   display: block;
 }
@@ -19,7 +19,7 @@
  * Clearfix for the .slides element
  */
 
-.flexslider .slides:after {
+.FlexSlider .slides:after {
   content: "\0020";
   display: block;
   clear: both;
@@ -28,11 +28,11 @@
   height: 0;
 }
 
-html[xmlns] .flexslider .slides {
+html[xmlns] .FlexSlider .slides {
   display: block;
 }
 
-* html .flexslider .slides {
+* html .FlexSlider .slides {
   height: 1%;
 }
 
@@ -42,6 +42,6 @@ html[xmlns] .flexslider .slides {
  * include js that eliminates this class on page load
  */
 
-.no-js .flexslider .slides > li:first-child {
+.no-js .FlexSlider .slides > li:first-child {
   display: block;
 }
