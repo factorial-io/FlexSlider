@@ -10,7 +10,12 @@
     "jquery.flexslider.js"
   ],
   "styles": [
-    "flexslider.css"
+    "./lib/variables.css",
+    "./lib/font.css",
+    "./lib/resets.css",
+    "./lib/base.css",
+    "./lib/theme.css",
+    "./lib/responsive.css"
   ],
   "fonts": [
     "fonts/flexslider-icon.eot",
