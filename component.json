@@ -3,7 +3,8 @@
   "version": "2.5.3",
   "repo": "factorial-io/FlexSlider",
   "authors": [
-    "WooThemes <jeff@woothemes.com>"
+    "WooThemes <jeff@woothemes.com>",
+    "Factorial <milan@factorial.io>"
   ],
   "description": "An awesome, fully responsive jQuery slider toolkit.",
   "scripts": [
