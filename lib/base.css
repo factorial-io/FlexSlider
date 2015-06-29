@@ -5,21 +5,25 @@
   padding: 0;
 }
 
-.FlexSlider .slides > li {
+/*
+ * [1] HACK: Fixes flickering of 3dtranslated elements in Webkit variants,
+ */
+
+.FlexSlider .FlexSlider-slides > li {
   display: none;
-  -webkit-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; /* [1] */
 }
 
-.FlexSlider .slides img {
+.FlexSlider .FlexSlider-slides img {
   width: 100%;
   display: block;
 }
 
 /*
- * Clearfix for the .slides element
+ * Clearfix for the .FlexSlider-slides element
  */
 
-.FlexSlider .slides:after {
+.FlexSlider .FlexSlider-slides:after {
   content: "\0020";
   display: block;
   clear: both;
@@ -28,11 +32,11 @@
   height: 0;
 }
 
-html[xmlns] .FlexSlider .slides {
+html[xmlns] .FlexSlider .FlexSlider-slides {
   display: block;
 }
 
-* html .FlexSlider .slides {
+* html .FlexSlider .FlexSlider-slides {
   height: 1%;
 }
 
@@ -42,6 +46,6 @@ html[xmlns] .FlexSlider .slides {
  * include js that eliminates this class on page load
  */
 
-.no-js .FlexSlider .slides > li:first-child {
+.no-js .FlexSlider .FlexSlider-slides > li:first-child {
   display: block;
 }

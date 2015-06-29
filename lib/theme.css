@@ -10,11 +10,11 @@
   zoom: 1;
 }
 
-.FlexSlider .slides {
+.FlexSlider .FlexSlider-slides {
   zoom: 1;
 }
 
-.FlexSlider .slides img {
+.FlexSlider .FlexSlider-slides img {
   height: auto;
 }
 
