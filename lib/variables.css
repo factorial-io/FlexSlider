@@ -10,7 +10,7 @@
   --FlexSlider-default-box-shadow-y-axis: 1px;
   --FlexSlider-default-box-shadow-blur: 2px;
   --FlexSlider-default-box-shadow-color: rgba(0,0,0,.2);
-  --FlexSlider-default-box-shadow-inset: '';
+  --FlexSlider-default-box-shadow-inset: 0;
 
   --FlexSlider-margin: 0 0 60px;
   --FlexSlider-bg: #fff;
@@ -20,7 +20,7 @@
   --FlexSlider-box-shadow-y-axis: 1px;
   --FlexSlider-box-shadow-blur: 4px;
   --FlexSlider-box-shadow-color: rgba(0,0,0,.2);
-  --FlexSlider-box-shadow-inset: '';
+  --FlexSlider-box-shadow-inset: 0;
 
   --FlexSlider-viewport-max-height: 2000px;
   --FlexSlider-viewport-loading-max-height: 300px;
