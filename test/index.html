@@ -116,8 +116,53 @@
   </div>
 
   <h3 class="Test-it">renders Basic Slider with Simple Caption</h3>
-  <div class="Test-run" id="c">
+  <style type="text/css">
+    #c .flex-caption {
+      width: 96%;
+      padding: 2%;
+      left: 0;
+      bottom: 0;
+      background: rgba(0,0,0,.5);
+      color: #fff;
+      text-shadow: 0 -1px 0 rgba(0,0,0,.3);
+      font-size: 14px;
+      line-height: 18px;
+    }
 
+    #c li.css a {
+      border-radius: 0;
+    }
+  </style>
+  <script type="text/javascript">
+    (function($, window, document) {
+      $(function() {
+        $('.FlexSlider', '#c').flexslider({
+          animation: 'slide'
+        });
+      });
+    })(window.jQuery, window, document, undefined);
+  </script>
+  <div class="Test-run" id="c">
+    <div class="FlexSlider">
+      <ul class="FlexSlider-slides">
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_cheesecake_brownie.jpg" />
+          <p class="flex-caption">Adventurer Cheesecake Brownie</p>
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_lemon.jpg" />
+          <p class="flex-caption">Adventurer Lemon</p>
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_donut.jpg" />
+          <p class="flex-caption">Adventurer Donut</p>
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_caramel.jpg" />
+          <p class="flex-caption">Adventurer Caramel</p>
+        </li>
+      </ul>
+    </div>
   </div>
 
 </div>
