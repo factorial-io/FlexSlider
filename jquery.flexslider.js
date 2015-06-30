@@ -151,7 +151,11 @@
           // initialize animation
           //If we're visible, or we don't use PageVisibility API
           if(!slider.vars.pauseInvisible || !methods.pauseInvisible.isHidden()) {
-            (slider.vars.initDelay > 0) ? slider.startTimeout = setTimeout(slider.play, slider.vars.initDelay) : slider.play();
+            if (slider.vars.initDelay > 0) {
+              slider.startTimeout = window.setTimeout(slider.play, slider.vars.initDelay);
+            } else {
+              slider.play();
+            }
           }
         }
 
@@ -182,40 +186,42 @@
             .addClass(namespace + 'active-slide');
 
           if (!msGesture){
-              slider.slides.on(eventType, function(e){
-                e.preventDefault();
-                var $slide = $(this),
-                    target = $slide.index();
+            slider.slides.on(eventType, function(e){
+              var $slide = $(this);
+              var target = $slide.index();
+              var posFromLeft = $slide.offset().left - $(slider).scrollLeft(); // Find position of slide relative to left of slider container
 
-                var posFromLeft = $slide.offset().left - $(slider).scrollLeft(); // Find position of slide relative to left of slider container
-                if( posFromLeft <= 0 && $slide.hasClass( namespace + 'active-slide' ) ) {
-                  slider.flexAnimate(slider.getTarget('prev'), true);
-                } else if (!$(slider.vars.asNavFor).data('flexslider').animating && !$slide.hasClass(namespace + 'active-slide')) {
-                  slider.direction = (slider.currentItem < target) ? 'next' : 'prev';
-                  slider.flexAnimate(target, slider.vars.pauseOnAction, false, true, true);
-                }
-              });
-          }else{
+              e.preventDefault();
+
+              if (posFromLeft <= 0 && $slide.hasClass(namespace + 'active-slide')) {
+                slider.flexAnimate(slider.getTarget('prev'), true);
+              } else if (!$(slider.vars.asNavFor).data('flexslider').animating && !$slide.hasClass(namespace + 'active-slide')) {
+                slider.direction = (slider.currentItem < target) ? 'next' : 'prev';
+                slider.flexAnimate(target, slider.vars.pauseOnAction, false, true, true);
+              }
+            });
+          } else {
               el._slider = slider;
-              slider.slides.each(function (){
-                  var that = this;
-                  that._gesture = new MSGesture();
-                  that._gesture.target = that;
-                  that.addEventListener('MSPointerDown', function (e){
-                      e.preventDefault();
-                      if(e.currentTarget._gesture) {
-                        e.currentTarget._gesture.addPointer(e.pointerId);
-                      }
-                  }, false);
-                  that.addEventListener('MSGestureTap', function (e){
-                      e.preventDefault();
-                      var $slide = $(this),
-                          target = $slide.index();
-                      if (!$(slider.vars.asNavFor).data('flexslider').animating && !$slide.hasClass('active')) {
-                          slider.direction = (slider.currentItem < target) ? 'next' : 'prev';
-                          slider.flexAnimate(target, slider.vars.pauseOnAction, false, true, true);
-                      }
-                  });
+              slider.slides.each(function() {
+                var _this = this;
+                _this._gesture = new window.MSGesture();
+                _this._gesture.target = _this;
+                _this.addEventListener('MSPointerDown', function(e) {
+                  e.preventDefault();
+                  if (e.currentTarget._gesture) {
+                    e.currentTarget._gesture.addPointer(e.pointerId);
+                  }
+                }, false);
+                _this.addEventListener('MSGestureTap', function(e) {
+                  var $slide = $(this);
+                  var target = $slide.index();
+
+                  e.preventDefault();
+                  if (!$(slider.vars.asNavFor).data('flexslider').animating && !$slide.hasClass('active')) {
+                    slider.direction = (slider.currentItem < target) ? 'next' : 'prev';
+                    slider.flexAnimate(target, slider.vars.pauseOnAction, false, true, true);
+                  }
+                });
               });
           }
         }
