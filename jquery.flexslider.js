@@ -947,7 +947,13 @@
         var sliderOffset, arr;
 
         if (type === 'init') {
-          slider.viewport = $('<div class="' + namespace + 'viewport"></div>').css({'overflow': 'hidden', 'position': 'relative'}).appendTo(slider).append(slider.container);
+          slider.viewport = $('<div class="' + namespace + 'viewport"></div>')
+            .css({
+              'overflow': 'hidden',
+              'position': 'relative'
+            })
+            .appendTo(slider)
+            .append(slider.container);
           // INFINITE LOOP:
           slider.cloneCount = 0;
           slider.cloneOffset = 0;
@@ -955,7 +961,9 @@
           if (reverse) {
             arr = $.makeArray(slider.slides).reverse();
             slider.slides = $(arr);
-            slider.container.empty().append(slider.slides);
+            slider.container
+              .empty()
+              .append(slider.slides);
           }
         }
         // INFINITE LOOP && !CAROUSEL:
@@ -963,9 +971,12 @@
           slider.cloneCount = 2;
           slider.cloneOffset = 1;
           // clear out old clones
-          if (type !== 'init') { slider.container.find('.clone').remove(); }
-          slider.container.append(methods.uniqueID(slider.slides.first().clone().addClass('clone')).attr('aria-hidden', 'true'))
-                          .prepend(methods.uniqueID(slider.slides.last().clone().addClass('clone')).attr('aria-hidden', 'true'));
+          if (type !== 'init') {
+            slider.container.find('.clone').remove();
+          }
+          slider.container
+            .append(methods.uniqueID(slider.slides.first().clone().addClass('clone')).attr('aria-hidden', 'true'))
+            .prepend(methods.uniqueID(slider.slides.last().clone().addClass('clone')).attr('aria-hidden', 'true'));
         }
         slider.newSlides = $(slider.vars.selector, slider);
 
