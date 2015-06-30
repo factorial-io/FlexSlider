@@ -6,31 +6,32 @@
 ;
 (function ($) {
 
-  //FlexSlider: Object Instance
+  'use strict';
+
+  // FlexSlider: Object Instance
   $.flexslider = function(el, options) {
+
     var slider = $(el);
 
     // making variables public
     slider.vars = $.extend({}, $.flexslider.defaults, options);
 
-    var namespace = slider.vars.namespace,
-        msGesture = window.navigator && window.navigator.msPointerEnabled && window.MSGesture,
-        touch = (( "ontouchstart" in window ) || msGesture || window.DocumentTouch && document instanceof DocumentTouch) && slider.vars.touch,
-        // depricating this idea, as devices are being released with both of these events
-        //eventType = (touch) ? "touchend" : "click",
-        eventType = "click touchend MSPointerUp keyup",
-        watchedEvent = "",
-        watchedEventClearTimer,
-        vertical = slider.vars.direction === "vertical",
-        reverse = slider.vars.reverse,
-        carousel = (slider.vars.itemWidth > 0),
-        fade = slider.vars.animation === "fade",
-        asNav = slider.vars.asNavFor !== "",
-        methods = {},
-        focused = true;
+    var namespace = slider.vars.namespace;
+    var msGesture = window.navigator && window.navigator.msPointerEnabled && window.MSGesture;
+    var touch = (( 'ontouchstart' in window ) || msGesture || window.DocumentTouch && document instanceof DocumentTouch) && slider.vars.touch;
+    var eventType = 'click touchend MSPointerUp keyup';
+    var watchedEvent = '';
+    var watchedEventClearTimer;
+    var vertical = slider.vars.direction === 'vertical';
+    var reverse = slider.vars.reverse;
+    var carousel = (slider.vars.itemWidth > 0);
+    var fade = slider.vars.animation === 'fade';
+    var asNav = slider.vars.asNavFor !== '';
+    var methods = {};
+    var focused = true;
 
     // Store a reference to the slider object
-    $.data(el, "flexslider", slider);
+    $.data(el, 'flexslider', slider);
 
     // Private slider methods
     methods = {
