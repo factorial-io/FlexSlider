@@ -17,23 +17,21 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.min.js">\x3C/script>')</script>
 <script defer src="../jquery.flexslider.js"></script>
-<script type="text/javascript">
-  $(window).load(function(){
-    $('.FlexSlider').flexslider({
-      animation: "slide",
-      start: function(slider){
-        $('body').removeClass('loading');
-      }
-    });
-  });
-</script>
-
 <div class="Test">
   <h1 class="Test-title">SUIT CSS: <a href="https://github.com/factorial-io/FlexSlider">FlexSlider</a> component tests</h1>
 
   <h2 class="Test-describe">.FlexSlider</h2>
 
   <h3 class="Test-it">renders the Basic Slider</h3>
+  <script>
+    (function($, window, document) {
+      $(function() {
+        $('.FlexSlider', '#a').flexslider({
+          animation: 'slide'
+        });
+      });
+    })(window.jQuery, window, document, undefined);
+  </script>
   <div class="Test-run" id="a">
     <div class="FlexSlider">
       <ul class="FlexSlider-slides">
@@ -52,4 +50,74 @@
       </ul>
     </div>
   </div>
+
+  <h3 class="Test-it">renders Basic Slider customDirectionNav</h3>
+  <style>
+    #b .FlexSlider {
+      margin-bottom: 10px;
+    }
+
+    #b .FlexSlider-control-nav {
+      position: relative;
+      bottom: auto;
+    }
+
+    #b .custom-navigation {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    #b .custom-navigation > * {
+      display: table-cell;
+    }
+
+    #b .custom-navigation > a {
+      width: 50px;
+    }
+
+    #b .custom-navigation .flex-next {
+      text-align: right;
+    }
+  </style>
+  <script type="text/javascript">
+    (function($, window, document) {
+      $(function() {
+        $('.FlexSlider', '#b').flexslider({
+          animation: "slide",
+          controlsContainer: $('.custom-controls-container'),
+          customDirectionNav: $('.custom-navigation a')
+        });
+      });
+    })(window.jQuery, window, document, undefined);
+  </script>
+  <div class="Test-run" id="b">
+    <div class="FlexSlider">
+      <ul class="FlexSlider-slides">
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_cheesecake_brownie.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_lemon.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_donut.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_caramel.jpg" />
+        </li>
+      </ul>
+    </div>
+    <div class="custom-navigation">
+      <a href="#" class="flex-prev">Prev</a>
+      <div class="custom-controls-container"></div>
+      <a href="#" class="flex-next">Next</a>
+    </div>
+  </div>
+
+  <h3 class="Test-it">renders Basic Slider with Simple Caption</h3>
+  <div class="Test-run" id="c">
+
+  </div>
+
 </div>
