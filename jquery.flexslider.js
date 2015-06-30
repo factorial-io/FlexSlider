@@ -207,28 +207,48 @@
           }
         },
         setupPaging: function() {
-          var type = (slider.vars.controlNav === "thumbnails") ? 'control-thumbs' : 'control-paging',
-              j = 1,
-              item,
-              slide;
+
+          var item;
+          var slide;
+          var type;
+
+          // TODO: Adjust class names.
+          if (slider.vars.controlNav === 'thumbnails') {
+            type = 'control-thumbs';
+          } else {
+            type = 'control-paging';
+          }
 
           slider.controlNavScaffold = $('<ol class="'+ namespace + 'control-nav ' + namespace + type + '"></ol>');
 
           if (slider.pagingCount > 1) {
-            for (var i = 0; i < slider.pagingCount; i++) {
+            for (var i = 0; i < slider.pagingCount; i += 1) {
               slide = slider.slides.eq(i);
-              item = (slider.vars.controlNav === "thumbnails") ? '<img src="' + slide.attr( 'data-thumb' ) + '"/>' : '<a>' + j + '</a>';
-              if ( 'thumbnails' === slider.vars.controlNav && true === slider.vars.thumbCaptions ) {
-                var captn = slide.attr( 'data-thumbcaption' );
-                if ( '' !== captn && undefined !== captn ) { item += '<span class="' + namespace + 'caption">' + captn + '</span>'; }
+
+              if (slider.vars.controlNav === 'thumbnails') {
+                item = '<img src="' + slide.attr( 'data-thumb' ) + '"/>';
+              } else {
+                item = '<a>' + (i + 1) + '</a>';
               }
+
+              if (slider.vars.controlNav === 'thumbnails' && slider.vars.thumbCaptions) {
+                var captn = slide.attr('data-thumbcaption');
+                if ('' !== captn && undefined !== captn) {
+                  item += '<span class="' + namespace + 'caption">' + captn + '</span>';
+                }
+              }
+
               slider.controlNavScaffold.append('<li>' + item + '</li>');
-              j++;
             }
           }
 
           // CONTROLSCONTAINER:
-          (slider.controlsContainer) ? $(slider.controlsContainer).append(slider.controlNavScaffold) : slider.append(slider.controlNavScaffold);
+          if (slider.controlsContainer) {
+            $(slider.controlsContainer).append(slider.controlNavScaffold);
+          } else {
+            slider.append(slider.controlNavScaffold);
+          }
+
           methods.controlNav.set();
 
           methods.controlNav.active();
