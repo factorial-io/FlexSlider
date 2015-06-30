@@ -5,6 +5,9 @@
 <link rel="stylesheet" href="../build/test.css">
 <link rel="stylesheet" href="../build/build.css">
 <style>
+  body {
+    overflow-x: hidden;
+  }
   .Box {
     background: green;
     height: 300px;
@@ -165,9 +168,8 @@
     </div>
   </div>
 
-<h3 class="Test-it">renders Slider w/thumbnail controlNav pattern</h3>
+  <h3 class="Test-it">renders Slider w/thumbnail controlNav pattern</h3>
   <style type="text/css">
-
   </style>
   <script type="text/javascript">
     (function($, window, document) {
@@ -192,6 +194,115 @@
           <img src="../demo/images/kitchen_adventurer_donut.jpg" />
         </li>
         <li class="FlexSlider-slide" data-thumb="../demo/images/kitchen_adventurer_caramel.jpg">
+          <img src="../demo/images/kitchen_adventurer_caramel.jpg" />
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="Test-it">renders Slider w/thumbnail slider</h3>
+  <style type="text/css">
+  </style>
+  <script type="text/javascript">
+    (function($, window, document) {
+      $(function() {
+        $('#carousel', '#e').flexslider({
+          animation: "slide",
+          controlNav: false,
+          animationLoop: false,
+          slideshow: false,
+          itemWidth: 210,
+          itemMargin: 5,
+          asNavFor: '#slider'
+        });
+
+        $('#slider', '#e').flexslider({
+          animation: "slide",
+          controlNav: false,
+          animationLoop: false,
+          slideshow: false,
+          sync: "#carousel"
+        });
+      });
+    })(window.jQuery, window, document, undefined);
+  </script>
+  <div class="Test-run" id="e">
+    <div class="FlexSlider" id="slider">
+      <ul class="FlexSlider-slides">
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_cheesecake_brownie.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_lemon.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_donut.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_caramel.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_cheesecake_brownie.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_lemon.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_donut.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_caramel.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_cheesecake_brownie.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_lemon.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_donut.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_caramel.jpg" />
+        </li>
+      </ul>
+    </div>
+    <div class="FlexSlider" id="carousel">
+      <ul class="FlexSlider-slides">
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_cheesecake_brownie.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_lemon.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_donut.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_caramel.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_cheesecake_brownie.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_lemon.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_donut.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_caramel.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_cheesecake_brownie.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_lemon.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_donut.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
           <img src="../demo/images/kitchen_adventurer_caramel.jpg" />
         </li>
       </ul>
