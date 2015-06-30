@@ -18,7 +18,7 @@
 
     var namespace = slider.vars.namespace;
     var msGesture = window.navigator && window.navigator.msPointerEnabled && window.MSGesture;
-    var touch = (( 'ontouchstart' in window ) || msGesture || window.DocumentTouch && document instanceof DocumentTouch) && slider.vars.touch;
+    var touch = (( 'ontouchstart' in window ) || msGesture || window.DocumentTouch && document instanceof window.DocumentTouch) && slider.vars.touch;
     var eventType = 'click touchend MSPointerUp keyup';
     var watchedEvent = '';
     var watchedEventClearTimer;
@@ -60,10 +60,17 @@
         slider.startTimeout = null;
         // TOUCH/USECSS:
         slider.transitions = !slider.vars.video && !fade && slider.vars.useCSS && (function() {
-          var obj = document.createElement('div'),
-              props = ['perspectiveProperty', 'WebkitPerspective', 'MozPerspective', 'OPerspective', 'msPerspective'];
+          var obj = document.createElement('div');
+          var props = [
+            'perspectiveProperty',
+            'WebkitPerspective',
+            'MozPerspective',
+            'OPerspective',
+            'msPerspective'
+          ];
+
           for (var i in props) {
-            if ( obj.style[ props[i] ] !== undefined ) {
+            if (obj.style[props[i]] !== undefined) {
               slider.pfx = props[i].replace('Perspective','').toLowerCase();
               slider.prop = '-' + slider.pfx + '-transform';
               return true;
@@ -160,12 +167,17 @@
           slider.asNav = true;
           slider.animatingTo = Math.floor(slider.currentSlide/slider.move);
           slider.currentItem = slider.currentSlide;
-          slider.slides.removeClass(namespace + 'active-slide').eq(slider.currentItem).addClass(namespace + 'active-slide');
-          if(!msGesture){
+          slider.slides
+            .removeClass(namespace + 'active-slide')
+            .eq(slider.currentItem)
+            .addClass(namespace + 'active-slide');
+
+          if (!msGesture){
               slider.slides.on(eventType, function(e){
                 e.preventDefault();
                 var $slide = $(this),
                     target = $slide.index();
+
                 var posFromLeft = $slide.offset().left - $(slider).scrollLeft(); // Find position of slide relative to left of slider container
                 if( posFromLeft <= 0 && $slide.hasClass( namespace + 'active-slide' ) ) {
                   slider.flexAnimate(slider.getTarget('prev'), true);
@@ -1106,6 +1118,8 @@
   };
 
   // Ensure the slider isn't focussed if the window loses focus.
+
+  // FIXME: Implicit globals ?!
   $( window ).blur( function ( e ) {
     focused = false;
   }).focus( function ( e ) {
