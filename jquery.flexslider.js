@@ -764,12 +764,12 @@
             slideString = (calcNext > slider.limit && slider.visible !== 1) ? slider.limit : calcNext;
           } else if (slider.currentSlide === 0 && target === slider.count - 1 && slider.vars.animationLoop && slider.direction !== 'next') {
             slideString = (reverse) ? (slider.count + slider.cloneOffset) * dimension : 0;
-          } else if (slider.currentSlide === slider.last && target === 0 && slider.vars.animationLoop && slider.direction !== "prev") {
+          } else if (slider.currentSlide === slider.last && target === 0 && slider.vars.animationLoop && slider.direction !== 'prev') {
             slideString = (reverse) ? 0 : (slider.count + 1) * dimension;
           } else {
             slideString = (reverse) ? ((slider.count - 1) - target + slider.cloneOffset) * dimension : (target + slider.cloneOffset) * dimension;
           }
-          slider.setProps(slideString, "", slider.vars.animationSpeed);
+          slider.setProps(slideString, '', slider.vars.animationSpeed);
           if (slider.transitions) {
             if (!slider.vars.animationLoop || !slider.atEnd) {
               slider.animating = false;
@@ -777,8 +777,8 @@
             }
 
             // Unbind previous transitionEnd events and re-bind new transitionEnd event
-            slider.container.unbind("webkitTransitionEnd transitionend");
-            slider.container.bind("webkitTransitionEnd transitionend", function() {
+            slider.container.unbind('webkitTransitionEnd transitionend');
+            slider.container.bind('webkitTransitionEnd transitionend', function() {
               clearTimeout(slider.ensureAnimationEnd);
               slider.wrapup(dimension);
             });
@@ -799,12 +799,12 @@
             //slider.slides.eq(slider.currentSlide).fadeOut(slider.vars.animationSpeed, slider.vars.easing);
             //slider.slides.eq(target).fadeIn(slider.vars.animationSpeed, slider.vars.easing, slider.wrapup);
 
-            slider.slides.eq(slider.currentSlide).css({"zIndex": 1}).animate({"opacity": 0}, slider.vars.animationSpeed, slider.vars.easing);
-            slider.slides.eq(target).css({"zIndex": 2}).animate({"opacity": 1}, slider.vars.animationSpeed, slider.vars.easing, slider.wrapup);
+            slider.slides.eq(slider.currentSlide).css({'zIndex': 1}).animate({'opacity': 0}, slider.vars.animationSpeed, slider.vars.easing);
+            slider.slides.eq(target).css({'zIndex': 2}).animate({'opacity': 1}, slider.vars.animationSpeed, slider.vars.easing, slider.wrapup);
 
           } else {
-            slider.slides.eq(slider.currentSlide).css({ "opacity": 0, "zIndex": 1 });
-            slider.slides.eq(target).css({ "opacity": 1, "zIndex": 2 });
+            slider.slides.eq(slider.currentSlide).css({ 'opacity': 0, 'zIndex': 1 });
+            slider.slides.eq(target).css({ 'opacity': 1, 'zIndex': 2 });
             slider.wrapup(dimension);
           }
         }
@@ -816,9 +816,9 @@
       // SLIDE:
       if (!fade && !carousel) {
         if (slider.currentSlide === 0 && slider.animatingTo === slider.last && slider.vars.animationLoop) {
-          slider.setProps(dimension, "jumpEnd");
+          slider.setProps(dimension, 'jumpEnd');
         } else if (slider.currentSlide === slider.last && slider.animatingTo === 0 && slider.vars.animationLoop) {
-          slider.setProps(dimension, "jumpStart");
+          slider.setProps(dimension, 'jumpStart');
         }
       }
       slider.animating = false;
@@ -829,7 +829,7 @@
 
     // SLIDESHOW:
     slider.animateSlides = function() {
-      if (!slider.animating && focused ) { slider.flexAnimate(slider.getTarget("next")); }
+      if (!slider.animating && focused ) { slider.flexAnimate(slider.getTarget('next')); }
     };
     // SLIDESHOW:
     slider.pause = function() {
@@ -837,9 +837,9 @@
       slider.animatedSlides = null;
       slider.playing = false;
       // PAUSEPLAY:
-      if (slider.vars.pausePlay) { methods.pausePlay.update("play"); }
+      if (slider.vars.pausePlay) { methods.pausePlay.update('play'); }
       // SYNC:
-      if (slider.syncExists) { methods.sync("pause"); }
+      if (slider.syncExists) { methods.sync('pause'); }
     };
     // SLIDESHOW:
     slider.play = function() {
@@ -847,9 +847,9 @@
       slider.animatedSlides = slider.animatedSlides || setInterval(slider.animateSlides, slider.vars.slideshowSpeed);
       slider.started = slider.playing = true;
       // PAUSEPLAY:
-      if (slider.vars.pausePlay) { methods.pausePlay.update("pause"); }
+      if (slider.vars.pausePlay) { methods.pausePlay.update('pause'); }
       // SYNC:
-      if (slider.syncExists) { methods.sync("play"); }
+      if (slider.syncExists) { methods.sync('play'); }
     };
     // STOP:
     slider.stop = function () {
@@ -860,17 +860,17 @@
       // ASNAV:
       var last = (asNav) ? slider.pagingCount - 1 : slider.last;
       return (fromNav) ? true :
-             (asNav && slider.currentItem === slider.count - 1 && target === 0 && slider.direction === "prev") ? true :
-             (asNav && slider.currentItem === 0 && target === slider.pagingCount - 1 && slider.direction !== "next") ? false :
+             (asNav && slider.currentItem === slider.count - 1 && target === 0 && slider.direction === 'prev') ? true :
+             (asNav && slider.currentItem === 0 && target === slider.pagingCount - 1 && slider.direction !== 'next') ? false :
              (target === slider.currentSlide && !asNav) ? false :
              (slider.vars.animationLoop) ? true :
-             (slider.atEnd && slider.currentSlide === 0 && target === last && slider.direction !== "next") ? false :
-             (slider.atEnd && slider.currentSlide === last && target === 0 && slider.direction === "next") ? false :
+             (slider.atEnd && slider.currentSlide === 0 && target === last && slider.direction !== 'next') ? false :
+             (slider.atEnd && slider.currentSlide === last && target === 0 && slider.direction === 'next') ? false :
              true;
     };
     slider.getTarget = function(dir) {
       slider.direction = dir;
-      if (dir === "next") {
+      if (dir === 'next') {
         return (slider.currentSlide === slider.last) ? 0 : slider.currentSlide + 1;
       } else {
         return (slider.currentSlide === 0) ? slider.last : slider.currentSlide - 1;
@@ -883,29 +883,29 @@
         var posCheck = (pos) ? pos : ((slider.itemW + slider.vars.itemMargin) * slider.move) * slider.animatingTo,
             posCalc = (function() {
               if (carousel) {
-                return (special === "setTouch") ? pos :
+                return (special === 'setTouch') ? pos :
                        (reverse && slider.animatingTo === slider.last) ? 0 :
                        (reverse) ? slider.limit - (((slider.itemW + slider.vars.itemMargin) * slider.move) * slider.animatingTo) :
                        (slider.animatingTo === slider.last) ? slider.limit : posCheck;
               } else {
                 switch (special) {
-                  case "setTotal": return (reverse) ? ((slider.count - 1) - slider.currentSlide + slider.cloneOffset) * pos : (slider.currentSlide + slider.cloneOffset) * pos;
-                  case "setTouch": return (reverse) ? pos : pos;
-                  case "jumpEnd": return (reverse) ? pos : slider.count * pos;
-                  case "jumpStart": return (reverse) ? slider.count * pos : pos;
+                  case 'setTotal': return (reverse) ? ((slider.count - 1) - slider.currentSlide + slider.cloneOffset) * pos : (slider.currentSlide + slider.cloneOffset) * pos;
+                  case 'setTouch': return (reverse) ? pos : pos;
+                  case 'jumpEnd': return (reverse) ? pos : slider.count * pos;
+                  case 'jumpStart': return (reverse) ? slider.count * pos : pos;
                   default: return pos;
                 }
               }
             }());
 
-            return (posCalc * -1) + "px";
+            return (posCalc * -1) + 'px';
           }());
 
       if (slider.transitions) {
-        target = (vertical) ? "translate3d(0," + target + ",0)" : "translate3d(" + target + ",0,0)";
-        dur = (dur !== undefined) ? (dur/1000) + "s" : "0s";
-        slider.container.css("-" + slider.pfx + "-transition-duration", dur);
-         slider.container.css("transition-duration", dur);
+        target = (vertical) ? 'translate3d(0,' + target + ',0)' : 'translate3d(' + target + ',0,0)';
+        dur = (dur !== undefined) ? (dur/1000) + 's' : '0s';
+        slider.container.css('-' + slider.pfx + '-transition-duration', dur);
+         slider.container.css('transition-duration', dur);
       }
 
       slider.args[slider.prop] = target;
@@ -919,8 +919,8 @@
       if (!fade) {
         var sliderOffset, arr;
 
-        if (type === "init") {
-          slider.viewport = $('<div class="' + namespace + 'viewport"></div>').css({"overflow": "hidden", "position": "relative"}).appendTo(slider).append(slider.container);
+        if (type === 'init') {
+          slider.viewport = $('<div class="' + namespace + 'viewport"></div>').css({'overflow': 'hidden', 'position': 'relative'}).appendTo(slider).append(slider.container);
           // INFINITE LOOP:
           slider.cloneCount = 0;
           slider.cloneOffset = 0;
@@ -936,7 +936,7 @@
           slider.cloneCount = 2;
           slider.cloneOffset = 1;
           // clear out old clones
-          if (type !== "init") { slider.container.find('.clone').remove(); }
+          if (type !== 'init') { slider.container.find('.clone').remove(); }
           slider.container.append(methods.uniqueID(slider.slides.first().clone().addClass('clone')).attr('aria-hidden', 'true'))
                           .prepend(methods.uniqueID(slider.slides.last().clone().addClass('clone')).attr('aria-hidden', 'true'));
         }
@@ -945,35 +945,35 @@
         sliderOffset = (reverse) ? slider.count - 1 - slider.currentSlide + slider.cloneOffset : slider.currentSlide + slider.cloneOffset;
         // VERTICAL:
         if (vertical && !carousel) {
-          slider.container.height((slider.count + slider.cloneCount) * 200 + "%").css("position", "absolute").width("100%");
+          slider.container.height((slider.count + slider.cloneCount) * 200 + '%').css('position', 'absolute').width('100%');
           setTimeout(function(){
-            slider.newSlides.css({"display": "block"});
+            slider.newSlides.css({'display': 'block'});
             slider.doMath();
             slider.viewport.height(slider.h);
-            slider.setProps(sliderOffset * slider.h, "init");
-          }, (type === "init") ? 100 : 0);
+            slider.setProps(sliderOffset * slider.h, 'init');
+          }, (type === 'init') ? 100 : 0);
         } else {
-          slider.container.width((slider.count + slider.cloneCount) * 200 + "%");
-          slider.setProps(sliderOffset * slider.computedW, "init");
+          slider.container.width((slider.count + slider.cloneCount) * 200 + '%');
+          slider.setProps(sliderOffset * slider.computedW, 'init');
           setTimeout(function(){
             slider.doMath();
-            slider.newSlides.css({"width": slider.computedW, "float": "left", "display": "block"});
+            slider.newSlides.css({'width': slider.computedW, 'float': 'left', 'display': 'block'});
             // SMOOTH HEIGHT:
             if (slider.vars.smoothHeight) { methods.smoothHeight(); }
-          }, (type === "init") ? 100 : 0);
+          }, (type === 'init') ? 100 : 0);
         }
       } else { // FADE:
-        slider.slides.css({"width": "100%", "float": "left", "marginRight": "-100%", "position": "relative"});
-        if (type === "init") {
+        slider.slides.css({'width': '100%', 'float': 'left', 'marginRight': '-100%', 'position': 'relative'});
+        if (type === 'init') {
           if (!touch) {
             //slider.slides.eq(slider.currentSlide).fadeIn(slider.vars.animationSpeed, slider.vars.easing);
             if (slider.vars.fadeFirstSlide == false) {
-              slider.slides.css({ "opacity": 0, "display": "block", "zIndex": 1 }).eq(slider.currentSlide).css({"zIndex": 2}).css({"opacity": 1});
+              slider.slides.css({ 'opacity': 0, 'display': 'block', 'zIndex': 1 }).eq(slider.currentSlide).css({'zIndex': 2}).css({'opacity': 1});
             } else {
-              slider.slides.css({ "opacity": 0, "display": "block", "zIndex": 1 }).eq(slider.currentSlide).css({"zIndex": 2}).animate({"opacity": 1},slider.vars.animationSpeed,slider.vars.easing);
+              slider.slides.css({ 'opacity': 0, 'display': 'block', 'zIndex': 1 }).eq(slider.currentSlide).css({'zIndex': 2}).animate({'opacity': 1},slider.vars.animationSpeed,slider.vars.easing);
             }
           } else {
-            slider.slides.css({ "opacity": 0, "display": "block", "webkitTransition": "opacity " + slider.vars.animationSpeed / 1000 + "s ease", "zIndex": 1 }).eq(slider.currentSlide).css({ "opacity": 1, "zIndex": 2});
+            slider.slides.css({ 'opacity': 0, 'display': 'block', 'webkitTransition': 'opacity ' + slider.vars.animationSpeed / 1000 + 's ease', 'zIndex': 1 }).eq(slider.currentSlide).css({ 'opacity': 1, 'zIndex': 2});
           }
         }
         // SMOOTH HEIGHT:
@@ -981,7 +981,7 @@
       }
       // !CAROUSEL:
       // CANDIDATE: active slide
-      if (!carousel) { slider.slides.removeClass(namespace + "active-slide").eq(slider.currentSlide).addClass(namespace + "active-slide"); }
+      if (!carousel) { slider.slides.removeClass(namespace + 'active-slide').eq(slider.currentSlide).addClass(namespace + 'active-slide'); }
 
       //FlexSlider: init() Callback
       slider.vars.init(slider);
@@ -1035,14 +1035,14 @@
 
       // update controlNav
       if (slider.vars.controlNav && !slider.manualControls) {
-        if ((action === "add" && !carousel) || slider.pagingCount > slider.controlNav.length) {
-          methods.controlNav.update("add");
-        } else if ((action === "remove" && !carousel) || slider.pagingCount < slider.controlNav.length) {
+        if ((action === 'add' && !carousel) || slider.pagingCount > slider.controlNav.length) {
+          methods.controlNav.update('add');
+        } else if ((action === 'remove' && !carousel) || slider.pagingCount < slider.controlNav.length) {
           if (carousel && slider.currentSlide > slider.last) {
             slider.currentSlide -= 1;
             slider.animatingTo -= 1;
           }
-          methods.controlNav.update("remove", slider.last);
+          methods.controlNav.update('remove', slider.last);
         }
       }
       // update directionNav
@@ -1064,7 +1064,7 @@
       }
 
       // update currentSlide, animatingTo, controlNav, and directionNav
-      slider.update(pos, "add");
+      slider.update(pos, 'add');
 
       // update slider.slides
       slider.slides = $(slider.vars.selector + ':not(.clone)', slider);
@@ -1090,7 +1090,7 @@
 
       // update currentSlide, animatingTo, controlNav, and directionNav
       slider.doMath();
-      slider.update(pos, "remove");
+      slider.update(pos, 'remove');
 
       // update slider.slides
       slider.slides = $(slider.vars.selector + ':not(.clone)', slider);
@@ -1114,13 +1114,13 @@
 
   //FlexSlider: Default Settings
   $.flexslider.defaults = {
-    namespace: "FlexSlider-",             //{NEW} String: Prefix string attached to the class of every element generated by the plugin
-    selector: ".FlexSlider-slides > .FlexSlider-slide",       //{NEW} Selector: Must match a simple pattern. '{container} > {slide}' -- Ignore pattern at your own peril
-    animation: "fade",              //String: Select your animation type, "fade" or "slide"
-    easing: "swing",                //{NEW} String: Determines the easing method used in jQuery transitions. jQuery easing plugin is supported!
-    direction: "horizontal",        //String: Select the sliding direction, "horizontal" or "vertical"
+    namespace: 'FlexSlider-',             //{NEW} String: Prefix string attached to the class of every element generated by the plugin
+    selector: '.FlexSlider-slides > .FlexSlider-slide',       //{NEW} Selector: Must match a simple pattern. '{container} > {slide}' -- Ignore pattern at your own peril
+    animation: 'fade',              //String: Select your animation type, 'fade' or 'slide'
+    easing: 'swing',                //{NEW} String: Determines the easing method used in jQuery transitions. jQuery easing plugin is supported!
+    direction: 'horizontal',        //String: Select the sliding direction, 'horizontal' or 'vertical'
     reverse: false,                 //{NEW} Boolean: Reverse the animation direction
-    animationLoop: true,            //Boolean: Should the animation loop? If false, directionNav will received "disable" classes at either end
+    animationLoop: true,            //Boolean: Should the animation loop? If false, directionNav will received 'disable' classes at either end
     smoothHeight: false,            //{NEW} Boolean: Allow height of the slider to animate smoothly in horizontal mode
     startAt: 0,                     //Integer: The slide that the slider should start on. Array notation (0 = first slide)
     slideshow: true,                //Boolean: Animate slider automatically
@@ -1128,8 +1128,8 @@
     animationSpeed: 600,            //Integer: Set the speed of animations, in milliseconds
     initDelay: 0,                   //{NEW} Integer: Set an initialization delay, in milliseconds
     randomize: false,               //Boolean: Randomize slide order
-    fadeFirstSlide: true,           //Boolean: Fade in the first slide when animation type is "fade"
-    thumbCaptions: false,           //Boolean: Whether or not to put captions on thumbnails when using the "thumbnails" controlNav.
+    fadeFirstSlide: true,           //Boolean: Fade in the first slide when animation type is 'fade'
+    thumbCaptions: false,           //Boolean: Whether or not to put captions on thumbnails when using the 'thumbnails' controlNav.
 
     // Usability features
     pauseOnAction: true,            //Boolean: Pause the slideshow when interacting with control elements, highly recommended.
@@ -1142,23 +1142,23 @@
     // Primary Controls
     controlNav: true,               //Boolean: Create navigation for paging control of each slide? Note: Leave true for manualControls usage
     directionNav: true,             //Boolean: Create navigation for previous/next navigation? (true/false)
-    prevText: "Previous",           //String: Set the text for the "previous" directionNav item
-    nextText: "Next",               //String: Set the text for the "next" directionNav item
+    prevText: 'Previous',           //String: Set the text for the 'previous' directionNav item
+    nextText: 'Next',               //String: Set the text for the 'next' directionNav item
 
     // Secondary Navigation
     keyboard: true,                 //Boolean: Allow slider navigating via keyboard left/right keys
     multipleKeyboard: false,        //{NEW} Boolean: Allow keyboard navigation to affect multiple sliders. Default behavior cuts out keyboard navigation with more than one slider present.
     mousewheel: false,              //{UPDATED} Boolean: Requires jquery.mousewheel.js (https://github.com/brandonaaron/jquery-mousewheel) - Allows slider navigating via mousewheel
     pausePlay: false,               //Boolean: Create pause/play dynamic element
-    pauseText: "Pause",             //String: Set the text for the "pause" pausePlay item
-    playText: "Play",               //String: Set the text for the "play" pausePlay item
+    pauseText: 'Pause',             //String: Set the text for the 'pause' pausePlay item
+    playText: 'Play',               //String: Set the text for the 'play' pausePlay item
 
     // Special properties
-    controlsContainer: "",          //{UPDATED} jQuery Object/Selector: Declare which container the navigation elements should be appended too. Default container is the FlexSlider element. Example use would be $(".flexslider-container"). Property is ignored if given element is not found.
-    manualControls: "",             //{UPDATED} jQuery Object/Selector: Declare custom control navigation. Examples would be $(".flex-control-nav li") or "#tabs-nav li img", etc. The number of elements in your controlNav should match the number of slides/tabs.
-    customDirectionNav: "",         //{NEW} jQuery Object/Selector: Custom prev / next button. Must be two jQuery elements. In order to make the events work they have to have the classes "prev" and "next" (plus namespace)
-    sync: "",                       //{NEW} Selector: Mirror the actions performed on this slider with another slider. Use with care.
-    asNavFor: "",                   //{NEW} Selector: Internal property exposed for turning the slider into a thumbnail navigation for another slider
+    controlsContainer: '',          //{UPDATED} jQuery Object/Selector: Declare which container the navigation elements should be appended too. Default container is the FlexSlider element. Example use would be $('.flexslider-container'). Property is ignored if given element is not found.
+    manualControls: '',             //{UPDATED} jQuery Object/Selector: Declare custom control navigation. Examples would be $('.flex-control-nav li') or '#tabs-nav li img', etc. The number of elements in your controlNav should match the number of slides/tabs.
+    customDirectionNav: '',         //{NEW} jQuery Object/Selector: Custom prev / next button. Must be two jQuery elements. In order to make the events work they have to have the classes 'prev' and 'next' (plus namespace)
+    sync: '',                       //{NEW} Selector: Mirror the actions performed on this slider with another slider. Use with care.
+    asNavFor: '',                   //{NEW} Selector: Internal property exposed for turning the slider into a thumbnail navigation for another slider
 
     // Carousel Options
     itemWidth: 0,                   //{NEW} Integer: Box-model width of individual carousel items, including horizontal borders and padding.
@@ -1182,10 +1182,10 @@
   $.fn.flexslider = function(options) {
     if (options === undefined) { options = {}; }
 
-    if (typeof options === "object") {
+    if (typeof options === 'object') {
       return this.each(function() {
         var $this = $(this),
-            selector = (options.selector) ? options.selector : ".FlexSlider-slides > .FlexSlider-slide",
+            selector = (options.selector) ? options.selector : '.FlexSlider-slides > .FlexSlider-slide',
             $slides = $this.find(selector);
 
       if ( ( $slides.length === 1 && options.allowOneSlide === true ) || $slides.length === 0 ) {
@@ -1199,13 +1199,13 @@
       // Helper strings to quickly perform functions on the slider
       var $slider = $(this).data('flexslider');
       switch (options) {
-        case "play": $slider.play(); break;
-        case "pause": $slider.pause(); break;
-        case "stop": $slider.stop(); break;
-        case "next": $slider.flexAnimate($slider.getTarget("next"), true); break;
-        case "prev":
-        case "previous": $slider.flexAnimate($slider.getTarget("prev"), true); break;
-        default: if (typeof options === "number") { $slider.flexAnimate(options, true); }
+        case 'play': $slider.play(); break;
+        case 'pause': $slider.pause(); break;
+        case 'stop': $slider.stop(); break;
+        case 'next': $slider.flexAnimate($slider.getTarget('next'), true); break;
+        case 'prev':
+        case 'previous': $slider.flexAnimate($slider.getTarget('prev'), true); break;
+        default: if (typeof options === 'number') { $slider.flexAnimate(options, true); }
       }
     }
   };
