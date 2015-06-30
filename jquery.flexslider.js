@@ -89,8 +89,12 @@
 
         // RANDOMIZE:
         if (slider.vars.randomize) {
-          slider.slides.sort(function() { return (Math.round(Math.random())-0.5); });
-          slider.container.empty().append(slider.slides);
+          slider.slides.sort(function() {
+            return (Math.round(Math.random()) - 0.5);
+          });
+          slider.container
+            .empty()
+            .append(slider.slides);
         }
 
         slider.doMath();
@@ -99,10 +103,14 @@
         slider.setup('init');
 
         // CONTROLNAV:
-        if (slider.vars.controlNav) { methods.controlNav.setup(); }
+        if (slider.vars.controlNav) {
+          methods.controlNav.setup();
+        }
 
         // DIRECTIONNAV:
-        if (slider.vars.directionNav) { methods.directionNav.setup(); }
+        if (slider.vars.directionNav) {
+          methods.directionNav.setup();
+        }
 
         // KEYBOARD:
         if (slider.vars.keyboard && ($(slider.containerSelector).length === 1 || slider.vars.multipleKeyboard)) {
@@ -115,6 +123,7 @@
             }
           });
         }
+
         // MOUSEWHEEL:
         if (slider.vars.mousewheel) {
           slider.bind('mousewheel', function(event, delta, deltaX, deltaY) {
