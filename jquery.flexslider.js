@@ -1220,17 +1220,22 @@
 
   //FlexSlider: Plugin Function
   $.fn.flexslider = function(options) {
-    if (options === undefined) { options = {}; }
+
+    if (options === undefined) {
+      options = {};
+    }
 
     if (typeof options === 'object') {
       return this.each(function() {
-        var $this = $(this),
-            selector = (options.selector) ? options.selector : '.FlexSlider-slides > .FlexSlider-slide',
-            $slides = $this.find(selector);
+        var $this = $(this);
+        var selector = (options.selector) ? options.selector : '.FlexSlider-slides > .FlexSlider-slide';
+        var $slides = $this.find(selector);
 
-      if ( ( $slides.length === 1 && options.allowOneSlide === true ) || $slides.length === 0 ) {
+        if (($slides.length === 1 && options.allowOneSlide === true) || $slides.length === 0) {
           $slides.fadeIn(400);
-          if (options.start) { options.start($this); }
+          if (options.start) {
+            options.start($this);
+          }
         } else if ($this.data('flexslider') === undefined) {
           new $.flexslider(this, options);
         }
@@ -1239,14 +1244,27 @@
       // Helper strings to quickly perform functions on the slider
       var $slider = $(this).data('flexslider');
       switch (options) {
-        case 'play': $slider.play(); break;
-        case 'pause': $slider.pause(); break;
-        case 'stop': $slider.stop(); break;
-        case 'next': $slider.flexAnimate($slider.getTarget('next'), true); break;
+        case 'play':
+          $slider.play();
+          break;
+        case 'pause':
+          $slider.pause();
+          break;
+        case 'stop':
+          $slider.stop();
+          break;
+        case 'next':
+          $slider.flexAnimate($slider.getTarget('next'), true);
+          break;
         case 'prev':
-        case 'previous': $slider.flexAnimate($slider.getTarget('prev'), true); break;
-        default: if (typeof options === 'number') { $slider.flexAnimate(options, true); }
+        case 'previous':
+          $slider.flexAnimate($slider.getTarget('prev'), true);
+          break;
+        default:
+          if (typeof options === 'number') {
+            $slider.flexAnimate(options, true);
+          }
       }
     }
   };
-})(jQuery);
+})(window.jQuery);
