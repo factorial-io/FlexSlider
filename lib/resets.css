@@ -23,3 +23,21 @@
 .FlexSlider-pauseplay span {
   text-transform: capitalize;
 }
+
+/*
+ * FIXME: use normalization;
+ */
+
+.FlexSliderPagination,
+.FlexSliderPagination-item {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.FlexSliderThumbnails,
+.FlexSliderThumbnails-item {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

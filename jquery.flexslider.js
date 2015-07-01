@@ -256,39 +256,48 @@
         },
         setupPaging: function() {
 
-          var item;
-          var slide;
-          var type;
+          var _scaffoldThumbnails = function() {
+            var template;
 
-          // TODO: Adjust class names.
-          if (slider.vars.controlNav === 'thumbnails') {
-            type = 'controlThumbs';
-          } else {
-            type = 'controlPaging';
-          }
+            template = $('<ol class="FlexSliderThumbnails"></ol>');
+            slider.slides.each(function(index, element) {
+              var slide = $(element);
+              var item;
 
-          slider.controlNavScaffold = $('<ol class="'+ namespace + 'controlNav ' + namespace + type + '"></ol>');
+              item = '<img class="FlexSliderThumbnails-link" src="' + slide.attr('data-thumb') + '"/>';
 
-          if (slider.pagingCount > 1) {
-            for (var i = 0; i < slider.pagingCount; i += 1) {
-              slide = slider.slides.eq(i);
-
-              if (slider.vars.controlNav === 'thumbnails') {
-                item = '<img src="' + slide.attr( 'data-thumb' ) + '"/>';
-              } else {
-                item = '<a>' + (i + 1) + '</a>';
-              }
-
-              // TODO: Review data-thumbcaption case.
+              // TODO: Review!
               if (slider.vars.controlNav === 'thumbnails' && slider.vars.thumbCaptions) {
                 var captn = slide.attr('data-thumbcaption');
                 if ('' !== captn && undefined !== captn) {
-                  item += '<span class="' + namespace + 'caption">' + captn + '</span>';
+                  item += '<span class="FlexSliderThumbnails-caption">' + captn + '</span>';
                 }
               }
 
-              slider.controlNavScaffold.append('<li>' + item + '</li>');
-            }
+              template.append('<li class="FlexSliderThumbnails-item">' + item + '</li>');
+            });
+
+            return template;
+          };
+
+          var _scaffoldPagination = function() {
+            var template;
+
+            template = $('<ol class="FlexSliderPagination"></ol>');
+            slider.slides.each(function(index) {
+              var item;
+
+              item = '<a class="FlexSliderPagination-link">' + (index + 1) + '</a>';
+              template.append('<li class="FlexSliderPagination-item">' + item + '</li>');
+            });
+
+            return template;
+          };
+
+          if (slider.vars.controlNav === 'thumbnails') {
+            slider.controlNavScaffold = _scaffoldThumbnails();
+          } else {
+            slider.controlNavScaffold = _scaffoldPagination();
           }
 
           // CONTROLSCONTAINER:
@@ -302,12 +311,14 @@
 
           methods.controlNav.active();
 
+          // Bind events
+          // TODO: Bind to .js-ClassName
           slider.controlNavScaffold.delegate('a, img', eventType, function(event) {
             event.preventDefault();
 
             if (watchedEvent === '' || watchedEvent === event.type) {
-              var $this = $(this),
-                  target = slider.controlNav.index($this);
+              var $this = $(this);
+              var target = slider.controlNav.index($this);
 
               if (!$this.hasClass(namespace + 'active')) {
                 slider.direction = (target > slider.currentSlide) ? 'next' : 'prev';
@@ -319,8 +330,8 @@
             if (watchedEvent === '') {
               watchedEvent = event.type;
             }
-            methods.setToClearWatchedEvent();
 
+            methods.setToClearWatchedEvent();
           });
         },
         setupManual: function() {
@@ -347,12 +358,31 @@
             methods.setToClearWatchedEvent();
           });
         },
+
         set: function() {
-          var selector = (slider.vars.controlNav === 'thumbnails') ? 'img' : 'a';
-          slider.controlNav = $('.' + namespace + 'controlNav li ' + selector, (slider.controlsContainer) ? slider.controlsContainer : slider);
+          var selector;
+          var context;
+
+          // TODO: Remove hard-coded class names!
+          if (slider.vars.controlNav === 'thumbnails') {
+            selector = '.FlexSliderThumbnails-link';
+          } else {
+            selector = '.FlexSliderPagination-link';
+          }
+
+          if (slider.controlsContainer) {
+            context = slider.controlsContainer;
+          } else {
+            context = slider;
+          }
+
+          slider.controlNav = $(selector, context);
         },
         active: function() {
-          slider.controlNav.removeClass(namespace + 'active').eq(slider.animatingTo).addClass(namespace + 'active');
+          slider.controlNav
+            .removeClass('is-active')
+            .eq(slider.animatingTo)
+            .addClass('is-active');
         },
         update: function(action, pos) {
           if (slider.pagingCount > 1 && action === 'add') {
