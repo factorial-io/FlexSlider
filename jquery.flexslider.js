@@ -254,50 +254,48 @@
             methods.controlNav.setupManual();
           }
         },
+        scaffoldThumbnails: function() {
+          var template;
+
+          template = $('<ol class="FlexSliderThumbnails"></ol>');
+          slider.slides.each(function(index, element) {
+            var slide = $(element);
+            var item;
+
+            item = '<img class="FlexSliderThumbnails-link" src="' + slide.attr('data-thumb') + '"/>';
+
+            // TODO: Review!
+            if (slider.vars.controlNav === 'thumbnails' && slider.vars.thumbCaptions) {
+              var captn = slide.attr('data-thumbcaption');
+              if ('' !== captn && undefined !== captn) {
+                item += '<span class="FlexSliderThumbnails-caption">' + captn + '</span>';
+              }
+            }
+
+            template.append('<li class="FlexSliderThumbnails-item">' + item + '</li>');
+          });
+
+          return template;
+        },
+        scaffoldPagination: function() {
+          var template;
+
+          template = $('<ol class="FlexSliderPagination"></ol>');
+          slider.slides.each(function(index) {
+            var item;
+
+            item = '<a class="FlexSliderPagination-link">' + (index + 1) + '</a>';
+            template.append('<li class="FlexSliderPagination-item">' + item + '</li>');
+          });
+
+          return template;
+        },
         setupPaging: function() {
 
-          var _scaffoldThumbnails = function() {
-            var template;
-
-            template = $('<ol class="FlexSliderThumbnails"></ol>');
-            slider.slides.each(function(index, element) {
-              var slide = $(element);
-              var item;
-
-              item = '<img class="FlexSliderThumbnails-link" src="' + slide.attr('data-thumb') + '"/>';
-
-              // TODO: Review!
-              if (slider.vars.controlNav === 'thumbnails' && slider.vars.thumbCaptions) {
-                var captn = slide.attr('data-thumbcaption');
-                if ('' !== captn && undefined !== captn) {
-                  item += '<span class="FlexSliderThumbnails-caption">' + captn + '</span>';
-                }
-              }
-
-              template.append('<li class="FlexSliderThumbnails-item">' + item + '</li>');
-            });
-
-            return template;
-          };
-
-          var _scaffoldPagination = function() {
-            var template;
-
-            template = $('<ol class="FlexSliderPagination"></ol>');
-            slider.slides.each(function(index) {
-              var item;
-
-              item = '<a class="FlexSliderPagination-link">' + (index + 1) + '</a>';
-              template.append('<li class="FlexSliderPagination-item">' + item + '</li>');
-            });
-
-            return template;
-          };
-
           if (slider.vars.controlNav === 'thumbnails') {
-            slider.controlNavScaffold = _scaffoldThumbnails();
+            slider.controlNavScaffold = methods.controlNav.scaffoldThumbnails();
           } else {
-            slider.controlNavScaffold = _scaffoldPagination();
+            slider.controlNavScaffold = methods.controlNav.scaffoldPagination();
           }
 
           // CONTROLSCONTAINER:
