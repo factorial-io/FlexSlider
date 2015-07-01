@@ -362,4 +362,33 @@
       </ul>
     </div>
   </div>
+
+  <h3 class="Test-it">allows settings from data-options</h3>
+  <style type="text/css">
+  </style>
+  <script type="text/javascript">
+    (function($, window, document) {
+      $(function() {
+        $('.FlexSlider', '#g').flexslider();
+      });
+    })(window.jQuery, window, document, undefined);
+  </script>
+  <div class="Test-run" id="g">
+    <div class="FlexSlider" data-options='{"animation: fade"}'>
+      <ul class="FlexSlider-slides">
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_cheesecake_brownie.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_lemon.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_donut.jpg" />
+        </li>
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_caramel.jpg" />
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

@@ -13,6 +13,26 @@
 
     var slider = $(el);
 
+    /**
+     * _getCreateOptions() returns an object with instantiation options, if the
+     * element on which the slider is instantiated has a data-options attribute
+     * that contains a JSON string. This allows the setting of options directly
+     * from HTML. Explicit options passed to the flexslider plugin always take
+     * precedence.
+     *
+     * @returns {Object}
+     */
+
+    var _getCreateOptions = function() {
+      if (slider.data('options') && typeof slider.data('options') === 'object') {
+        return slider.data('options');
+      } else {
+        return {};
+      }
+    };
+
+    options = $.extend({}, _getCreateOptions(), options);
+
     // making variables public
     slider.vars = $.extend({}, $.flexslider.defaults, options);
 
@@ -839,6 +859,7 @@
         if (slider.vars.smoothHeight) { methods.smoothHeight(slider.vars.animationSpeed); }
       }
     };
+
     slider.wrapup = function(dimension) {
       // SLIDE:
       if (!fade && !carousel) {
@@ -858,6 +879,7 @@
     slider.animateSlides = function() {
       if (!slider.animating && focused ) { slider.flexAnimate(slider.getTarget('next')); }
     };
+
     // SLIDESHOW:
     slider.pause = function() {
       clearInterval(slider.animatedSlides);
@@ -868,6 +890,7 @@
       // SYNC:
       if (slider.syncExists) { methods.sync('pause'); }
     };
+
     // SLIDESHOW:
     slider.play = function() {
       if (slider.playing) { clearInterval(slider.animatedSlides); }
@@ -878,11 +901,13 @@
       // SYNC:
       if (slider.syncExists) { methods.sync('play'); }
     };
+
     // STOP:
     slider.stop = function () {
       slider.pause();
       slider.stopped = true;
     };
+
     slider.canAdvance = function(target, fromNav) {
       // ASNAV:
       var last = (asNav) ? slider.pagingCount - 1 : slider.last;
@@ -895,6 +920,7 @@
              (slider.atEnd && slider.currentSlide === last && target === 0 && slider.direction === 'next') ? false :
              true;
     };
+
     slider.getTarget = function(dir) {
       slider.direction = dir;
       if (dir === 'next') {
@@ -1112,6 +1138,7 @@
       //FlexSlider: added() Callback
       slider.vars.added(slider);
     };
+
     slider.removeSlide = function(obj) {
       var pos = (isNaN(obj)) ? slider.slides.index($(obj)) : obj;
 
