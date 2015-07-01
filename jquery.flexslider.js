@@ -262,12 +262,12 @@
 
           // TODO: Adjust class names.
           if (slider.vars.controlNav === 'thumbnails') {
-            type = 'control-thumbs';
+            type = 'controlThumbs';
           } else {
-            type = 'control-paging';
+            type = 'controlPaging';
           }
 
-          slider.controlNavScaffold = $('<ol class="'+ namespace + 'control-nav ' + namespace + type + '"></ol>');
+          slider.controlNavScaffold = $('<ol class="'+ namespace + 'controlNav ' + namespace + type + '"></ol>');
 
           if (slider.pagingCount > 1) {
             for (var i = 0; i < slider.pagingCount; i += 1) {
@@ -279,6 +279,7 @@
                 item = '<a>' + (i + 1) + '</a>';
               }
 
+              // TODO: Review data-thumbcaption case.
               if (slider.vars.controlNav === 'thumbnails' && slider.vars.thumbCaptions) {
                 var captn = slide.attr('data-thumbcaption');
                 if ('' !== captn && undefined !== captn) {
@@ -348,7 +349,7 @@
         },
         set: function() {
           var selector = (slider.vars.controlNav === 'thumbnails') ? 'img' : 'a';
-          slider.controlNav = $('.' + namespace + 'control-nav li ' + selector, (slider.controlsContainer) ? slider.controlsContainer : slider);
+          slider.controlNav = $('.' + namespace + 'controlNav li ' + selector, (slider.controlsContainer) ? slider.controlsContainer : slider);
         },
         active: function() {
           slider.controlNav.removeClass(namespace + 'active').eq(slider.animatingTo).addClass(namespace + 'active');
@@ -367,7 +368,7 @@
       },
       directionNav: {
         setup: function() {
-          var directionNavScaffold = $('<ul class="' + namespace + 'direction-nav"><li class="' + namespace + 'nav-prev"><a class="' + namespace + 'prev" href="#">' + slider.vars.prevText + '</a></li><li class="' + namespace + 'nav-next"><a class="' + namespace + 'next" href="#">' + slider.vars.nextText + '</a></li></ul>');
+          var directionNavScaffold = $('<ul class="' + namespace + 'directionNav"><li class="' + namespace + 'nav-prev"><a class="' + namespace + 'prev" href="#">' + slider.vars.prevText + '</a></li><li class="' + namespace + 'nav-next"><a class="' + namespace + 'next" href="#">' + slider.vars.nextText + '</a></li></ul>');
 
           // CUSTOM DIRECTION NAV:
           if (slider.customDirectionNav) {
@@ -375,10 +376,10 @@
           // CONTROLSCONTAINER:
           } else if (slider.controlsContainer) {
             $(slider.controlsContainer).append(directionNavScaffold);
-            slider.directionNav = $('.' + namespace + 'direction-nav li a', slider.controlsContainer);
+            slider.directionNav = $('.' + namespace + 'directionNav li a', slider.controlsContainer);
           } else {
             slider.append(directionNavScaffold);
-            slider.directionNav = $('.' + namespace + 'direction-nav li a', slider);
+            slider.directionNav = $('.' + namespace + 'directionNav li a', slider);
           }
 
           methods.directionNav.update();
@@ -1222,7 +1223,7 @@
 
     // Special properties
     controlsContainer: '',          //{UPDATED} jQuery Object/Selector: Declare which container the navigation elements should be appended too. Default container is the FlexSlider element. Example use would be $('.flexslider-container'). Property is ignored if given element is not found.
-    manualControls: '',             //{UPDATED} jQuery Object/Selector: Declare custom control navigation. Examples would be $('.flex-control-nav li') or '#tabs-nav li img', etc. The number of elements in your controlNav should match the number of slides/tabs.
+    manualControls: '',             //{UPDATED} jQuery Object/Selector: Declare custom control navigation. Examples would be $('.flex-controlNav li') or '#tabs-nav li img', etc. The number of elements in your controlNav should match the number of slides/tabs.
     customDirectionNav: '',         //{NEW} jQuery Object/Selector: Custom prev / next button. Must be two jQuery elements. In order to make the events work they have to have the classes 'prev' and 'next' (plus namespace)
     sync: '',                       //{NEW} Selector: Mirror the actions performed on this slider with another slider. Use with care.
     asNavFor: '',                   //{NEW} Selector: Internal property exposed for turning the slider into a thumbnail navigation for another slider

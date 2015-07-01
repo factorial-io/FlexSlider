@@ -25,14 +25,14 @@
   --FlexSlider-viewport-max-height: 2000px;
   --FlexSlider-viewport-loading-max-height: 300px;
 
-  --FlexSlider-control-thumbs: 5px 0 0;
+  --FlexSlider-controlThumbs: 5px 0 0;
 
-  --FlexSlider-direction-nav-color: rgba(0,0,0,.8);
-  --FlexSlider-direction-nav-text-shadow: 1px 1px 0 rgba(255,255,255,.3);
-  --FlexSlider-direction-nav-icon-color: rgba(0,0,0,.8);
-  --FlexSlider-direction-nav-icon-text-shadow: 1px 1px 0 rgba(255,255,255,.3);
-  --FlexSlider-direction-nav-icon-prev: '\f001';
-  --FlexSlider-direction-nav-icon-next: '\f002';
+  --FlexSlider-directionNav-color: rgba(0,0,0,.8);
+  --FlexSlider-directionNav-text-shadow: 1px 1px 0 rgba(255,255,255,.3);
+  --FlexSlider-directionNav-icon-color: rgba(0,0,0,.8);
+  --FlexSlider-directionNav-icon-text-shadow: 1px 1px 0 rgba(255,255,255,.3);
+  --FlexSlider-directionNav-icon-prev: '\f001';
+  --FlexSlider-directionNav-icon-next: '\f002';
 
   --FlexSlider-pauseplay-icon-play: '\f003';
   --FlexSlider-pauseplay-icon-pause: '\f004';
