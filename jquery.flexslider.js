@@ -306,7 +306,6 @@
           }
 
           methods.controlNav.set();
-
           methods.controlNav.active();
 
           // Bind events
@@ -383,31 +382,42 @@
             .addClass('is-active');
         },
         update: function(action, pos) {
+
           if (slider.pagingCount > 1 && action === 'add') {
-            slider.controlNavScaffold.append($('<li><a>' + slider.count + '</a></li>'));
+            slider.controlNavScaffold
+              .append($('<li><a>' + slider.count + '</a></li>')); // REVIEW
           } else if (slider.pagingCount === 1) {
-            slider.controlNavScaffold.find('li').remove();
+            slider.controlNavScaffold
+              .find('li')
+              .remove();
           } else {
-            slider.controlNav.eq(pos).closest('li').remove();
+            slider.controlNav
+              .eq(pos)
+              .closest('li').remove();
           }
+
           methods.controlNav.set();
-          (slider.pagingCount > 1 && slider.pagingCount !== slider.controlNav.length) ? slider.update(pos, action) : methods.controlNav.active();
+
+          if (slider.pagingCount > 1 && slider.pagingCount !== slider.controlNav.length) {
+            slider.update(pos, action);
+          } else {
+            methods.controlNav.active();
+          }
         }
       },
       directionNav: {
         setup: function() {
-          var directionNavScaffold = $('<ul class="' + namespace + 'directionNav"><li class="' + namespace + 'nav-prev"><a class="' + namespace + 'prev" href="#">' + slider.vars.prevText + '</a></li><li class="' + namespace + 'nav-next"><a class="' + namespace + 'next" href="#">' + slider.vars.nextText + '</a></li></ul>');
 
-          // CUSTOM DIRECTION NAV:
+          var directionNavScaffold = $(methods.directionNav.scaffold());
+
           if (slider.customDirectionNav) {
             slider.directionNav = slider.customDirectionNav;
-          // CONTROLSCONTAINER:
           } else if (slider.controlsContainer) {
             $(slider.controlsContainer).append(directionNavScaffold);
-            slider.directionNav = $('.' + namespace + 'directionNav li a', slider.controlsContainer);
+            slider.directionNav = $('.FlexSliderDirection-link', slider.controlsContainer);
           } else {
             slider.append(directionNavScaffold);
-            slider.directionNav = $('.' + namespace + 'directionNav li a', slider);
+            slider.directionNav = $('.FlexSliderDirection-link', slider);
           }
 
           methods.directionNav.update();
@@ -417,7 +427,11 @@
             var target;
 
             if (watchedEvent === '' || watchedEvent === event.type) {
-              target = ($(this).hasClass(namespace + 'next')) ? slider.getTarget('next') : slider.getTarget('prev');
+              if ($(this).hasClass('js-FlexSlider-next')) { // FIXME
+                target = slider.getTarget('next');
+              } else {
+                target = slider.getTarget('prev');
+              }
               slider.flexAnimate(target, slider.vars.pauseOnAction);
             }
 
@@ -428,23 +442,57 @@
             methods.setToClearWatchedEvent();
           });
         },
+        scaffold: function() {
+          var template;
+
+          template = '<ul class="FlexSliderDirection">' +
+            '<li class="FlexSliderDirection-item FlexSliderDirection--prev">' +
+              '<a class="FlexSliderDirection-link FlexSliderDirection-link--prev js-FlexSlider-prev">' +
+                slider.vars.prevText +
+              '</a>' +
+            '</li>' +
+            '<li class="FlexSliderDirection-item FlexSliderDirection--next">' +
+              '<a class="FlexSliderDirection-link FlexSliderDirection-link--next js-FlexSlider-next">' +
+                slider.vars.nextText +
+              '</a>' +
+            '</li>' +
+          '</ul>';
+
+          return template;
+        },
         update: function() {
-          var disabledClass = namespace + 'disabled';
+          var disabledClass = 'is-disabled';
+
           if (slider.pagingCount === 1) {
-            slider.directionNav.addClass(disabledClass).attr('tabindex', '-1');
+            slider.directionNav
+              .addClass(disabledClass)
+              .attr('tabindex', '-1');
           } else if (!slider.vars.animationLoop) {
             if (slider.animatingTo === 0) {
-              slider.directionNav.removeClass(disabledClass).filter('.' + namespace + 'prev').addClass(disabledClass).attr('tabindex', '-1');
+              slider.directionNav
+                .removeClass(disabledClass)
+                .filter('.' + namespace + 'prev')
+                .addClass(disabledClass)
+                .attr('tabindex', '-1');
             } else if (slider.animatingTo === slider.last) {
-              slider.directionNav.removeClass(disabledClass).filter('.' + namespace + 'next').addClass(disabledClass).attr('tabindex', '-1');
+              slider.directionNav
+                .removeClass(disabledClass)
+                .filter('.' + namespace + 'next')
+                .addClass(disabledClass)
+                .attr('tabindex', '-1');
             } else {
-              slider.directionNav.removeClass(disabledClass).removeAttr('tabindex');
+              slider.directionNav
+                .removeClass(disabledClass)
+                .removeAttr('tabindex');
             }
           } else {
-            slider.directionNav.removeClass(disabledClass).removeAttr('tabindex');
+            slider.directionNav
+              .removeClass(disabledClass)
+              .removeAttr('tabindex');
           }
         }
       },
+
       pausePlay: {
         setup: function() {
           var pausePlayScaffold = $('<div class="' + namespace + 'pauseplay"><a></a></div>');
