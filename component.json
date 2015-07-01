@@ -3,14 +3,20 @@
   "version": "2.5.3",
   "repo": "factorial-io/FlexSlider",
   "authors": [
-    "WooThemes <jeff@woothemes.com>"
+    "WooThemes <jeff@woothemes.com>",
+    "Factorial <milan@factorial.io>"
   ],
   "description": "An awesome, fully responsive jQuery slider toolkit.",
   "scripts": [
     "jquery.flexslider.js"
   ],
   "styles": [
-    "flexslider.css"
+    "./lib/variables.css",
+    "./lib/font.css",
+    "./lib/resets.css",
+    "./lib/base.css",
+    "./lib/theme.css",
+    "./lib/responsive.css"
   ],
   "fonts": [
     "fonts/flexslider-icon.eot",

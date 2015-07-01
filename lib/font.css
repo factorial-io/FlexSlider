@@ -1,0 +1,22 @@
+/** @define FlexSlider; use strict */
+
+:root {
+  --FlexSlider-font-name: "flexslider-icon";
+  --FlexSlider-font-path: "fonts";
+  --FlexSlider-font-file-name: "flexslider-icon";
+}
+
+/*
+ * FIXME: File Paths!
+ */
+
+@font-face {
+  font-family: var(--FlexSlider-font-name);
+  src :url('flexslider/fonts/flexslider-icon.eot');
+  src :url('flexslider/fonts/flexslider-icon.eot?#iefix') format('embedded-opentype'),
+    url('flexslider/fonts/flexslider-icon.woff') format('woff'),
+    url('flexslider/fonts/flexslider-icon.ttf') format('truetype'),
+    url('flexslider/fonts/flexslider-icon.svg#flexslider-icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

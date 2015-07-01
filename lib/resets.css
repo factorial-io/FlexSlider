@@ -1,0 +1,25 @@
+/** !define FlexSlider; use strict */
+
+.FlexSlider-container a:hover,
+.FlexSlider-slider a:hover,
+.FlexSlider-container a:focus,
+.FlexSlider-slider a:focus {
+  outline: none;
+}
+
+/*
+ * REVIEW: Unprefixed .FlexSlider-slides!
+ */
+
+.FlexSlider-slides,
+.FlexSlider-slides > li,
+.FlexSlider-control-nav,
+.FlexSlider-direction-nav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.FlexSlider-pauseplay span {
+  text-transform: capitalize;
+}

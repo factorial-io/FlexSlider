@@ -10,7 +10,7 @@
   <link href="css/shThemeDefault.css" rel="stylesheet" type="text/css" />
   <!-- Demo CSS -->
 	<link rel="stylesheet" href="css/demo.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../flexslider.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="./../build/build.css" type="text/css" media="screen" />
 
 	<!-- Modernizr -->
   <script src="js/modernizr.js"></script>
@@ -62,7 +62,7 @@
 
 	<div id="main" role="main">
       <section class="slider">
-        <div class="flexslider">
+        <div class="FlexSlider">
           <ul class="slides">
             <li>
   	    	    <img src="images/kitchen_adventurer_cheesecake_brownie.jpg" />
@@ -96,7 +96,7 @@
           <pre class="brush: js; toolbar: false; gutter: false;">
             // Can also be used with $(document).ready()
             $(window).load(function() {
-              $('.flexslider').flexslider({
+              $('.FlexSlider').flexslider({
                 animation: "slide"
               });
             });
@@ -123,7 +123,7 @@
         <div id="view-html" class="code">
           <pre class="brush: xml; toolbar: false; gutter: false;">
             &lt;!-- Place somewhere in the &lt;body&gt; of your page -->
-            &lt;div class="flexslider">
+            &lt;div class="FlexSlider">
               &lt;ul class="slides">
                 &lt;li>
                   &lt;img src="slide1.jpg" />
@@ -162,7 +162,7 @@
       SyntaxHighlighter.all();
     });
     $(window).load(function(){
-      $('.flexslider').flexslider({
+      $('.FlexSlider').flexslider({
         animation: "slide",
         start: function(slider){
           $('body').removeClass('loading');
