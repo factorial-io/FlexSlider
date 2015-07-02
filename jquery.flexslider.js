@@ -531,7 +531,17 @@
           });
         },
         update: function(state) {
-          (state === 'play') ? slider.pausePlay.removeClass(namespace + 'pause').addClass(namespace + 'play').html(slider.vars.playText) : slider.pausePlay.removeClass(namespace + 'play').addClass(namespace + 'pause').html(slider.vars.pauseText);
+          if (state === 'play') {
+            slider.pausePlay
+              .removeClass(namespace + 'pause')
+              .addClass(namespace + 'play')
+              .html(slider.vars.playText);
+          } else {
+            slider.pausePlay
+              .removeClass(namespace + 'play')
+              .addClass(namespace + 'pause')
+              .html(slider.vars.pauseText);
+          }
         }
       },
       touch: function() {
