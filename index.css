@@ -12,9 +12,12 @@
  */
 
 @import "./lib/variables.css";
-/*@import "./lib/mixins.css";*/ /* Obsolete, handled by autoprefixer. */
 @import "./lib/font.css";
 @import "./lib/resets.css";
 @import "./lib/base.css";
 @import "./lib/theme.css";
 @import "./lib/responsive.css";
+@import "./lib/flexslider-pagination.css";
+@import "./lib/flexslider-thumbnails.css";
+@import "./lib/flexslider-direction.css";
+@import "./lib/flexslider-pauseplay.css";

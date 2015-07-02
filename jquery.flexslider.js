@@ -254,40 +254,48 @@
             methods.controlNav.setupManual();
           }
         },
+        scaffoldThumbnails: function() {
+          var template;
+
+          template = $('<ol class="FlexSliderThumbnails"></ol>');
+          slider.slides.each(function(index, element) {
+            var slide = $(element);
+            var item;
+
+            item = '<img class="FlexSliderThumbnails-link" src="' + slide.attr('data-thumb') + '"/>';
+
+            // TODO: Review!
+            if (slider.vars.controlNav === 'thumbnails' && slider.vars.thumbCaptions) {
+              var captn = slide.attr('data-thumbcaption');
+              if ('' !== captn && undefined !== captn) {
+                item += '<span class="FlexSliderThumbnails-caption">' + captn + '</span>';
+              }
+            }
+
+            template.append('<li class="FlexSliderThumbnails-item">' + item + '</li>');
+          });
+
+          return template;
+        },
+        scaffoldPagination: function() {
+          var template;
+
+          template = $('<ol class="FlexSliderPagination"></ol>');
+          slider.slides.each(function(index) {
+            var item;
+
+            item = '<a class="FlexSliderPagination-link">' + (index + 1) + '</a>';
+            template.append('<li class="FlexSliderPagination-item">' + item + '</li>');
+          });
+
+          return template;
+        },
         setupPaging: function() {
 
-          var item;
-          var slide;
-          var type;
-
-          // TODO: Adjust class names.
           if (slider.vars.controlNav === 'thumbnails') {
-            type = 'control-thumbs';
+            slider.controlNavScaffold = methods.controlNav.scaffoldThumbnails();
           } else {
-            type = 'control-paging';
-          }
-
-          slider.controlNavScaffold = $('<ol class="'+ namespace + 'control-nav ' + namespace + type + '"></ol>');
-
-          if (slider.pagingCount > 1) {
-            for (var i = 0; i < slider.pagingCount; i += 1) {
-              slide = slider.slides.eq(i);
-
-              if (slider.vars.controlNav === 'thumbnails') {
-                item = '<img src="' + slide.attr( 'data-thumb' ) + '"/>';
-              } else {
-                item = '<a>' + (i + 1) + '</a>';
-              }
-
-              if (slider.vars.controlNav === 'thumbnails' && slider.vars.thumbCaptions) {
-                var captn = slide.attr('data-thumbcaption');
-                if ('' !== captn && undefined !== captn) {
-                  item += '<span class="' + namespace + 'caption">' + captn + '</span>';
-                }
-              }
-
-              slider.controlNavScaffold.append('<li>' + item + '</li>');
-            }
+            slider.controlNavScaffold = methods.controlNav.scaffoldPagination();
           }
 
           // CONTROLSCONTAINER:
@@ -298,15 +306,16 @@
           }
 
           methods.controlNav.set();
-
           methods.controlNav.active();
 
+          // Bind events
+          // TODO: Bind to .js-ClassName
           slider.controlNavScaffold.delegate('a, img', eventType, function(event) {
             event.preventDefault();
 
             if (watchedEvent === '' || watchedEvent === event.type) {
-              var $this = $(this),
-                  target = slider.controlNav.index($this);
+              var $this = $(this);
+              var target = slider.controlNav.index($this);
 
               if (!$this.hasClass(namespace + 'active')) {
                 slider.direction = (target > slider.currentSlide) ? 'next' : 'prev';
@@ -318,8 +327,8 @@
             if (watchedEvent === '') {
               watchedEvent = event.type;
             }
-            methods.setToClearWatchedEvent();
 
+            methods.setToClearWatchedEvent();
           });
         },
         setupManual: function() {
@@ -346,39 +355,69 @@
             methods.setToClearWatchedEvent();
           });
         },
+
         set: function() {
-          var selector = (slider.vars.controlNav === 'thumbnails') ? 'img' : 'a';
-          slider.controlNav = $('.' + namespace + 'control-nav li ' + selector, (slider.controlsContainer) ? slider.controlsContainer : slider);
+          var selector;
+          var context;
+
+          // TODO: Remove hard-coded class names!
+          if (slider.vars.controlNav === 'thumbnails') {
+            selector = '.FlexSliderThumbnails-link';
+          } else {
+            selector = '.FlexSliderPagination-link';
+          }
+
+          if (slider.controlsContainer) {
+            context = slider.controlsContainer;
+          } else {
+            context = slider;
+          }
+
+          slider.controlNav = $(selector, context);
         },
         active: function() {
-          slider.controlNav.removeClass(namespace + 'active').eq(slider.animatingTo).addClass(namespace + 'active');
+          slider.controlNav
+            .removeClass('is-active')
+            .eq(slider.animatingTo)
+            .addClass('is-active');
         },
         update: function(action, pos) {
+
           if (slider.pagingCount > 1 && action === 'add') {
-            slider.controlNavScaffold.append($('<li><a>' + slider.count + '</a></li>'));
+            slider.controlNavScaffold
+              .append($('<li><a>' + slider.count + '</a></li>')); // REVIEW
           } else if (slider.pagingCount === 1) {
-            slider.controlNavScaffold.find('li').remove();
+            slider.controlNavScaffold
+              .find('li')
+              .remove();
           } else {
-            slider.controlNav.eq(pos).closest('li').remove();
+            slider.controlNav
+              .eq(pos)
+              .closest('li').remove();
           }
+
           methods.controlNav.set();
-          (slider.pagingCount > 1 && slider.pagingCount !== slider.controlNav.length) ? slider.update(pos, action) : methods.controlNav.active();
+
+          if (slider.pagingCount > 1 && slider.pagingCount !== slider.controlNav.length) {
+            slider.update(pos, action);
+          } else {
+            methods.controlNav.active();
+          }
         }
       },
       directionNav: {
         setup: function() {
-          var directionNavScaffold = $('<ul class="' + namespace + 'direction-nav"><li class="' + namespace + 'nav-prev"><a class="' + namespace + 'prev" href="#">' + slider.vars.prevText + '</a></li><li class="' + namespace + 'nav-next"><a class="' + namespace + 'next" href="#">' + slider.vars.nextText + '</a></li></ul>');
 
-          // CUSTOM DIRECTION NAV:
+          var directionNavScaffold = $(methods.directionNav.scaffold());
+
           if (slider.customDirectionNav) {
             slider.directionNav = slider.customDirectionNav;
-          // CONTROLSCONTAINER:
           } else if (slider.controlsContainer) {
             $(slider.controlsContainer).append(directionNavScaffold);
-            slider.directionNav = $('.' + namespace + 'direction-nav li a', slider.controlsContainer);
+            slider.directionNav = $('.FlexSliderDirection-link', slider.controlsContainer);
           } else {
             slider.append(directionNavScaffold);
-            slider.directionNav = $('.' + namespace + 'direction-nav li a', slider);
+            slider.directionNav = $('.FlexSliderDirection-link', slider);
           }
 
           methods.directionNav.update();
@@ -388,7 +427,11 @@
             var target;
 
             if (watchedEvent === '' || watchedEvent === event.type) {
-              target = ($(this).hasClass(namespace + 'next')) ? slider.getTarget('next') : slider.getTarget('prev');
+              if ($(this).hasClass('js-FlexSlider-next')) { // FIXME
+                target = slider.getTarget('next');
+              } else {
+                target = slider.getTarget('prev');
+              }
               slider.flexAnimate(target, slider.vars.pauseOnAction);
             }
 
@@ -399,43 +442,82 @@
             methods.setToClearWatchedEvent();
           });
         },
+        scaffold: function() {
+          var template;
+
+          template = '<ul class="FlexSliderDirection">' +
+            '<li class="FlexSliderDirection-item FlexSliderDirection--prev">' +
+              '<a class="FlexSliderDirection-link FlexSliderDirection-link--prev js-FlexSlider-prev">' +
+                slider.vars.prevText +
+              '</a>' +
+            '</li>' +
+            '<li class="FlexSliderDirection-item FlexSliderDirection--next">' +
+              '<a class="FlexSliderDirection-link FlexSliderDirection-link--next js-FlexSlider-next">' +
+                slider.vars.nextText +
+              '</a>' +
+            '</li>' +
+          '</ul>';
+
+          return template;
+        },
         update: function() {
-          var disabledClass = namespace + 'disabled';
+          var disabledClass = 'is-disabled';
+
           if (slider.pagingCount === 1) {
-            slider.directionNav.addClass(disabledClass).attr('tabindex', '-1');
+            slider.directionNav
+              .addClass(disabledClass)
+              .attr('tabindex', '-1');
           } else if (!slider.vars.animationLoop) {
             if (slider.animatingTo === 0) {
-              slider.directionNav.removeClass(disabledClass).filter('.' + namespace + 'prev').addClass(disabledClass).attr('tabindex', '-1');
+              slider.directionNav
+                .removeClass(disabledClass)
+                .filter('.' + namespace + 'prev')
+                .addClass(disabledClass)
+                .attr('tabindex', '-1');
             } else if (slider.animatingTo === slider.last) {
-              slider.directionNav.removeClass(disabledClass).filter('.' + namespace + 'next').addClass(disabledClass).attr('tabindex', '-1');
+              slider.directionNav
+                .removeClass(disabledClass)
+                .filter('.' + namespace + 'next')
+                .addClass(disabledClass)
+                .attr('tabindex', '-1');
             } else {
-              slider.directionNav.removeClass(disabledClass).removeAttr('tabindex');
+              slider.directionNav
+                .removeClass(disabledClass)
+                .removeAttr('tabindex');
             }
           } else {
-            slider.directionNav.removeClass(disabledClass).removeAttr('tabindex');
+            slider.directionNav
+              .removeClass(disabledClass)
+              .removeAttr('tabindex');
           }
         }
       },
+
       pausePlay: {
         setup: function() {
-          var pausePlayScaffold = $('<div class="' + namespace + 'pauseplay"><a></a></div>');
+          var pausePlayScaffold = $(methods.pausePlay.scaffold());
 
           // CONTROLSCONTAINER:
           if (slider.controlsContainer) {
             slider.controlsContainer.append(pausePlayScaffold);
-            slider.pausePlay = $('.' + namespace + 'pauseplay a', slider.controlsContainer);
+            slider.pausePlay = $('.js-FlexSlider-togglePlay', slider.controlsContainer); // TODO
           } else {
             slider.append(pausePlayScaffold);
-            slider.pausePlay = $('.' + namespace + 'pauseplay a', slider);
+            slider.pausePlay = $('.js-FlexSlider-togglePlay', slider); // TODO
           }
 
-          methods.pausePlay.update((slider.vars.slideshow) ? namespace + 'pause' : namespace + 'play');
+          // Initial update call.
+          if (slider.vars.slideshow) {
+            methods.pausePlay.update('pause');
+          } else {
+            methods.pausePlay.update('play');
+          }
 
           slider.pausePlay.bind(eventType, function(event) {
             event.preventDefault();
 
             if (watchedEvent === '' || watchedEvent === event.type) {
-              if ($(this).hasClass(namespace + 'pause')) {
+              if ($(this).hasClass('is-paused')) {
                 slider.manualPause = true;
                 slider.manualPlay = false;
                 slider.pause();
@@ -453,8 +535,29 @@
             methods.setToClearWatchedEvent();
           });
         },
+        scaffold: function() {
+          var template;
+
+          template = '<div class="FlexSliderPausePlay">' +
+            '<a class="FlexSliderPausePlay-link js-FlexSlider-togglePlay"></a>' +
+          '</div>';
+
+          return template;
+        },
+
+        // REVIEW: Use --modifier instead of .is-state?
         update: function(state) {
-          (state === 'play') ? slider.pausePlay.removeClass(namespace + 'pause').addClass(namespace + 'play').html(slider.vars.playText) : slider.pausePlay.removeClass(namespace + 'play').addClass(namespace + 'pause').html(slider.vars.pauseText);
+          if (state === 'play') {
+            slider.pausePlay
+              .removeClass('is-paused')
+              .addClass('is-playing')
+              .html(slider.vars.playText);
+          } else {
+            slider.pausePlay
+              .removeClass('is-playing')
+              .addClass('is-paused')
+              .html(slider.vars.pauseText);
+          }
         }
       },
       touch: function() {
@@ -1222,7 +1325,7 @@
 
     // Special properties
     controlsContainer: '',          //{UPDATED} jQuery Object/Selector: Declare which container the navigation elements should be appended too. Default container is the FlexSlider element. Example use would be $('.flexslider-container'). Property is ignored if given element is not found.
-    manualControls: '',             //{UPDATED} jQuery Object/Selector: Declare custom control navigation. Examples would be $('.flex-control-nav li') or '#tabs-nav li img', etc. The number of elements in your controlNav should match the number of slides/tabs.
+    manualControls: '',             //{UPDATED} jQuery Object/Selector: Declare custom control navigation. Examples would be $('.flex-controlNav li') or '#tabs-nav li img', etc. The number of elements in your controlNav should match the number of slides/tabs.
     customDirectionNav: '',         //{NEW} jQuery Object/Selector: Custom prev / next button. Must be two jQuery elements. In order to make the events work they have to have the classes 'prev' and 'next' (plus namespace)
     sync: '',                       //{NEW} Selector: Mirror the actions performed on this slider with another slider. Use with care.
     asNavFor: '',                   //{NEW} Selector: Internal property exposed for turning the slider into a thumbnail navigation for another slider

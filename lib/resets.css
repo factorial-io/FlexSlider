@@ -13,8 +13,8 @@
 
 .FlexSlider-slides,
 .FlexSlider-slides > li,
-.FlexSlider-control-nav,
-.FlexSlider-direction-nav {
+.FlexSlider-controlNav,
+.FlexSlider-directionNav {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -22,4 +22,28 @@
 
 .FlexSlider-pauseplay span {
   text-transform: capitalize;
+}
+
+/*
+ * FIXME: use normalization;
+ */
+
+.FlexSliderPagination,
+.FlexSliderPagination-item {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.FlexSliderThumbnails,
+.FlexSliderThumbnails-item {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.FlexSliderDirection {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
