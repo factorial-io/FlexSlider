@@ -495,15 +495,15 @@
 
       pausePlay: {
         setup: function() {
-          var pausePlayScaffold = $(methods.pausePlay.scaffold());
+          var pausePlayScaffold = $('<div class="' + namespace + 'pauseplay"><a></a></div>');
 
           // CONTROLSCONTAINER:
           if (slider.controlsContainer) {
             slider.controlsContainer.append(pausePlayScaffold);
-            slider.pausePlay = $('.js-FlexSlider-pausePlay', slider.controlsContainer);
+            slider.pausePlay = $('.' + namespace + 'pauseplay a', slider.controlsContainer);
           } else {
             slider.append(pausePlayScaffold);
-            slider.pausePlay = $('.js-FlexSlider-pausePlay', slider);
+            slider.pausePlay = $('.' + namespace + 'pauseplay a', slider);
           }
 
           methods.pausePlay.update((slider.vars.slideshow) ? namespace + 'pause' : namespace + 'play');
