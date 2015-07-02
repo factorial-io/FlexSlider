@@ -495,24 +495,29 @@
 
       pausePlay: {
         setup: function() {
-          var pausePlayScaffold = $('<div class="' + namespace + 'pauseplay"><a></a></div>');
+          var pausePlayScaffold = $(methods.pausePlay.scaffold());
 
           // CONTROLSCONTAINER:
           if (slider.controlsContainer) {
             slider.controlsContainer.append(pausePlayScaffold);
-            slider.pausePlay = $('.' + namespace + 'pauseplay a', slider.controlsContainer);
+            slider.pausePlay = $('.js-FlexSlider-togglePlay', slider.controlsContainer); // TODO
           } else {
             slider.append(pausePlayScaffold);
-            slider.pausePlay = $('.' + namespace + 'pauseplay a', slider);
+            slider.pausePlay = $('.js-FlexSlider-togglePlay', slider); // TODO
           }
 
-          methods.pausePlay.update((slider.vars.slideshow) ? namespace + 'pause' : namespace + 'play');
+          // Initial update call.
+          if (slider.vars.slideshow) {
+            methods.pausePlay.update('pause');
+          } else {
+            methods.pausePlay.update('play');
+          }
 
           slider.pausePlay.bind(eventType, function(event) {
             event.preventDefault();
 
             if (watchedEvent === '' || watchedEvent === event.type) {
-              if ($(this).hasClass(namespace + 'pause')) {
+              if ($(this).hasClass('is-paused')) {
                 slider.manualPause = true;
                 slider.manualPlay = false;
                 slider.pause();
@@ -530,16 +535,27 @@
             methods.setToClearWatchedEvent();
           });
         },
+        scaffold: function() {
+          var template;
+
+          template = '<div class="FlexSliderPausePlay">' +
+            '<a class="FlexSliderPausePlay-link js-FlexSlider-togglePlay"></a>' +
+          '</div>';
+
+          return template;
+        },
+
+        // REVIEW: Use --modifier instead of .is-state?
         update: function(state) {
           if (state === 'play') {
             slider.pausePlay
-              .removeClass(namespace + 'pause')
-              .addClass(namespace + 'play')
+              .removeClass('is-paused')
+              .addClass('is-playing')
               .html(slider.vars.playText);
           } else {
             slider.pausePlay
-              .removeClass(namespace + 'play')
-              .addClass(namespace + 'pause')
+              .removeClass('is-playing')
+              .addClass('is-paused')
               .html(slider.vars.pauseText);
           }
         }
