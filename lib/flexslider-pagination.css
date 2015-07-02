@@ -8,31 +8,39 @@
 }
 
 .FlexSliderPagination-item {
-  margin: 0 6px;
+  margin: 0 3px;
   display: inline-block;
   zoom: 1;
   *display: inline;
 }
 
 .FlexSliderPagination-link {
+  position: relative;
+  box-sizing: border-box;
+  display: block;
   width: 11px;
   height: 11px;
-  display: block;
-  background: #666;
-  background: rgba(0,0,0,0.5);
-  cursor: pointer;
-  text-indent: -9999px;
-  box-shadow: inset 0 0 3px rgba(0,0,0,.3);
   border-radius: 20px;
+  border: 1px solid #03c;
+  background: transparent;
+  text-indent: -9999px;
+  cursor: pointer;
 }
 
-.FlexSliderPagination-link :hover {
-  background: #333;
-  background: rgba(0,0,0,0.7);
+.FlexSliderPagination-link:hover:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  display: block;
+  width: 7px;
+  height: 7px;
+  margin: 1px;
+  border-radius: 20px;
+  background: #03c;
 }
 
 .FlexSliderPagination-link.is-active {
-  background: #000;
-  background: rgba(0,0,0,0.9);
+  background: #03c;
   cursor: default;
 }
