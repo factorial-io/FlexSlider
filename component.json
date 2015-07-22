@@ -1,6 +1,6 @@
 {
   "name": "flexslider",
-  "version": "2.5.5",
+  "version": "2.5.6",
   "description": "An awesome, fully responsive jQuery slider toolkit.",
   "repository": "factorial-io/FlexSlider",
   "authors": [
@@ -45,7 +45,7 @@
   "backend": {
     "template": "flex-slider.tpl.haml",
     "arguments": {
-      "options": {},
+      "data_options": {},
       "items": [
         "<img src='http://www.fillmurray.com/1024/768'>",
         "<img src='http://www.fillmurray.com/1024/768'>",
