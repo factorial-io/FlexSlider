@@ -1,8 +1,8 @@
 {
   "name": "flexslider",
-  "version": "2.5.4",
+  "version": "2.5.5",
   "description": "An awesome, fully responsive jQuery slider toolkit.",
-  "repo": "factorial-io/FlexSlider",
+  "repository": "factorial-io/FlexSlider",
   "authors": [
     "WooThemes <jeff@woothemes.com>",
     "Factorial <milan@factorial.io>"
@@ -39,7 +39,9 @@
   "dependencies": {
     "components/jquery": "1.11.3"
   },
-  "templates": "flex-slider.tpl.haml",
+  "templates": [
+    "flex-slider.tpl.haml"
+  ],
   "backend": {
     "template": "flex-slider.tpl.haml",
     "arguments": {
