@@ -1,5 +1,11 @@
 /** @define FlexSliderPausePlay; use-strict */
 
+:root {
+  --FlexSliderPausePlay-color: #03c;
+  --FlexSliderPausePlay-icon-play: '\f003';
+  --FlexSliderPausePlay-icon-pause: '\f004';
+}
+
 .FlexSliderPausePlay-link {
   display: block;
   width: 20px;
@@ -11,7 +17,7 @@
   z-index: 10;
   overflow: hidden;
   cursor: pointer;
-  color: #000;
+  color: var(--FlexSliderPausePlay-color);
 }
 
 .FlexSliderPausePlay-link:before {
@@ -25,9 +31,9 @@
 }
 
 .FlexSliderPausePlay-link.is-paused:before {
-  content: var(--FlexSlider-pauseplay-icon-pause);
+  content: var(--FlexSliderPausePlay-icon-pause);
 }
 
 .FlexSliderPausePlay-link.is-playing:before {
-  content: var(--FlexSlider-pauseplay-icon-play);
+  content: var(--FlexSliderPausePlay-icon-play);
 }
