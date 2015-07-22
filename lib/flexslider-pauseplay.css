@@ -1,0 +1,33 @@
+/** @define FlexSliderPausePlay; use-strict */
+
+.FlexSliderPausePlay-link {
+  display: block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  opacity: 0.8;
+  z-index: 10;
+  overflow: hidden;
+  cursor: pointer;
+  color: #000;
+}
+
+.FlexSliderPausePlay-link:before {
+  font-family: var(--FlexSlider-font-name);
+  font-size: 20px;
+  display: inline-block;
+}
+
+.FlexSliderPausePlay-link:hover {
+  opacity: 1;
+}
+
+.FlexSliderPausePlay-link.is-paused:before {
+  content: var(--FlexSlider-pauseplay-icon-pause);
+}
+
+.FlexSliderPausePlay-link.is-playing:before {
+  content: var(--FlexSlider-pauseplay-icon-play);
+}

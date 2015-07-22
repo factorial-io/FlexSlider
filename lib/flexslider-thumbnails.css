@@ -1,0 +1,31 @@
+/** @define FlexSliderThumbnails; use strict */
+
+.FlexSliderThumbnails {
+  margin: var(--FlexSlider-controlThumbs);
+  position: static;
+  overflow: hidden;
+}
+
+.FlexSliderThumbnails-item {
+  width: 25%;
+  float: left;
+  margin: 0;
+}
+
+.FlexSliderThumbnails-link {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: .7;
+  cursor: pointer;
+  transition: all var(--FlexSlider-default-duration) var(--FlexSlider-default-easing);
+}
+
+.FlexSliderThumbnails-link:hover {
+  opacity: 1;
+}
+
+.FlexSliderThumbnails-link.is-active {
+  opacity: 1;
+  cursor: default;
+}

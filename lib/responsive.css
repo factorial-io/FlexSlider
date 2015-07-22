@@ -1,0 +1,14 @@
+/** @define FlexSlider; use strict */
+
+@media screen and (max-width: 860px) {
+
+  .FlexSlider-directionNav .FlexSlider-prev {
+    opacity: 1;
+    left: 10px;
+  }
+
+  .FlexSlider-directionNav .FlexSlider-next {
+    opacity: 1;
+    right: 10px;
+  }
+}

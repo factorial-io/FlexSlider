@@ -1,0 +1,23 @@
+/*
+ * jQuery FlexSlider v2.5.0
+ * http://www.woothemes.com/flexslider/
+ *
+ * Copyright 2012 WooThemes
+ * Free to use under the GPLv2 and later license.
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Contributing author: Tyler Smith (@mbmufffin)
+ * Contributing author: Milan Matull (@mlnmln)
+ *
+ */
+
+@import "./lib/variables.css";
+@import "./lib/font.css";
+@import "./lib/resets.css";
+@import "./lib/base.css";
+@import "./lib/theme.css";
+@import "./lib/responsive.css";
+@import "./lib/flexslider-pagination.css";
+@import "./lib/flexslider-thumbnails.css";
+@import "./lib/flexslider-direction.css";
+@import "./lib/flexslider-pauseplay.css";

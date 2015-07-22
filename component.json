@@ -1,16 +1,26 @@
 {
   "name": "flexslider",
-  "version": "2.5.3",
+  "version": "2.5.4",
+  "description": "An awesome, fully responsive jQuery slider toolkit.",
   "repo": "factorial-io/FlexSlider",
   "authors": [
-    "WooThemes <jeff@woothemes.com>"
+    "WooThemes <jeff@woothemes.com>",
+    "Factorial <milan@factorial.io>"
   ],
-  "description": "An awesome, fully responsive jQuery slider toolkit.",
   "scripts": [
     "jquery.flexslider.js"
   ],
   "styles": [
-    "flexslider.css"
+    "lib/variables.css",
+    "lib/font.css",
+    "lib/resets.css",
+    "lib/base.css",
+    "lib/theme.css",
+    "lib/responsive.css",
+    "lib/flexslider-pagination.css",
+    "lib/flexslider-thumbnails.css",
+    "lib/flexslider-direction.css",
+    "lib/flexslider-pauseplay.css"
   ],
   "fonts": [
     "fonts/flexslider-icon.eot",
@@ -28,5 +38,18 @@
   "license": "GPLv2 and later",
   "dependencies": {
     "components/jquery": "1.11.3"
+  },
+  "templates": "flex-slider.tpl.haml",
+  "backend": {
+    "template": "flex-slider.tpl.haml",
+    "arguments": {
+      "options": {},
+      "items": [
+        "<img src='http://www.fillmurray.com/1024/768'>",
+        "<img src='http://www.fillmurray.com/1024/768'>",
+        "<img src='http://www.fillmurray.com/1024/768'>",
+        "<img src='http://www.fillmurray.com/1024/768'>"
+      ]
+    }
   }
 }
