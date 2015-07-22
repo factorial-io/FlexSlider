@@ -1,14 +1,22 @@
 /** @define FlexSliderPagination; use strict */
 
+:root {
+  --FlexSliderPagination-color: #03c;
+  --FlexSliderPagination-bottom: -40px;
+  --FlexSliderPagination-item-margin: 3px;
+  --FlexSliderPagination-link-size: 11px;
+  --FlexSliderPagination-link-border-radius: 20px;
+}
+
 .FlexSliderPagination {
   width: 100%;
   position: absolute;
-  bottom: -40px;
+  bottom: var(--FlexSliderPagination-bottom);
   text-align: center;
 }
 
 .FlexSliderPagination-item {
-  margin: 0 3px;
+  margin: var(--FlexSliderPagination-item-margin);
   display: inline-block;
   zoom: 1;
   *display: inline;
@@ -18,10 +26,10 @@
   position: relative;
   box-sizing: border-box;
   display: block;
-  width: 11px;
-  height: 11px;
-  border-radius: 20px;
-  border: 1px solid #03c;
+  width: var(--FlexSliderPagination-link-size);
+  height: var(--FlexSliderPagination-link-size);
+  border-radius: var(--FlexSliderPagination-link-border-radius);
+  border: 1px solid var(--FlexSliderPagination-color);
   background: transparent;
   text-indent: -9999px;
   cursor: pointer;
@@ -33,14 +41,14 @@
   left: 0;
   content: "";
   display: block;
-  width: 7px;
-  height: 7px;
+  width: calc(var(--FlexSliderPagination-link-size) - 4px);
+  height: calc(var(--FlexSliderPagination-link-size) - 4px);
   margin: 1px;
-  border-radius: 20px;
-  background: #03c;
+  border-radius: var(--FlexSliderPagination-link-border-radius);
+  background: var(--FlexSliderPagination-color);
 }
 
 .FlexSliderPagination-link.is-active {
-  background: #03c;
+  background: var(--FlexSliderPagination-color);
   cursor: default;
 }
