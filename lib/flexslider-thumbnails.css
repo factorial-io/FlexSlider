@@ -1,7 +1,11 @@
 /** @define FlexSliderThumbnails; use strict */
 
+:root {
+ --FlexSliderThumbnails-margin: 0;
+}
+
 .FlexSliderThumbnails {
-  margin: var(--FlexSlider-controlThumbs);
+  margin: var(--FlexSliderThumbnails-margin);
   position: static;
   overflow: hidden;
 }
