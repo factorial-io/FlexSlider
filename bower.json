@@ -1,11 +1,11 @@
 {
   "name": "flexslider",
-  "version": "2.5.0",
+  "version": "2.5.4",
+  "description": "An awesome, fully responsive jQuery slider toolkit.",
   "homepage": "https://github.com/woothemes/FlexSlider",
   "authors": [
     "WooThemes <jeff@woothemes.com>"
   ],
-  "description": "An awesome, fully responsive jQuery slider toolkit.",
   "main": [
     "jquery.flexslider.js",
     "flexslider.css"
