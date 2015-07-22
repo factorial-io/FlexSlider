@@ -1,4 +1,4 @@
-.FlexSlider.js-FlexSlider(data-options=$data_options)
+.FlexSlider.js-FlexSlider(data-options=json_encode($data_options))
   %ul.FlexSlider-slides
     - foreach($items as $item)
       %li.FlexSlider-slide
