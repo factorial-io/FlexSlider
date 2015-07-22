@@ -2,28 +2,19 @@
 
 :root {
 
-  --FlexSlider-default-duration: 1s;
-  --FlexSlider-default-easing: ease;
-
-  --FlexSlider-default-border-radius: 5px;
-  --FlexSlider-default-box-shadow-x-axis: 0;
-  --FlexSlider-default-box-shadow-y-axis: 1px;
-  --FlexSlider-default-box-shadow-blur: 2px;
-  --FlexSlider-default-box-shadow-color: rgba(0,0,0,.2);
-  --FlexSlider-default-box-shadow-inset: 0;
-
   --FlexSlider-margin: 0 0 60px;
-  --FlexSlider-bg: #fff;
   --FlexSlider-border: 4px solid #fff;
   --FlexSlider-border-radius: 4px;
-  --FlexSlider-box-shadow-x-axis: 0;
-  --FlexSlider-box-shadow-y-axis: 1px;
-  --FlexSlider-box-shadow-blur: 4px;
-  --FlexSlider-box-shadow-color: rgba(0,0,0,.2);
-  --FlexSlider-box-shadow-inset: 0;
+  --FlexSlider-padding: 0;
+  --FlexSlider-background-color: #fff;
+  --FlexSlider-box-shadow: 0 0 1px 2px rgba(0,0,0,.2);
 
   --FlexSlider-viewport-max-height: 2000px;
   --FlexSlider-viewport-loading-max-height: 300px;
+
+  --FlexSlider-default-duration: 1s;
+  --FlexSlider-default-easing: ease;
+  --FlexSlider-default-border-radius: 5px;
 
   --FlexSlider-controlThumbs: 5px 0 0;
 

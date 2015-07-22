@@ -5,8 +5,9 @@
   margin: var(--FlexSlider-margin);
   border: var(--FlexSlider-border);
   border-radius: var(--FlexSlider-border-radius);
-  background: var(--FlexSlider-bg);
-  box-shadow: var(--FlexSlider-default-box-shadow-inset) var(--FlexSlider-default-box-shadow-x-axis) var(--FlexSlider-default-box-shadow-y-axis) var(--FlexSlider-default-box-shadow-blur) var(--FlexSlider-default-box-shadow-color);
+  padding: var(--FlexSlider-padding);
+  background-color: var(--FlexSlider-background-color);
+  box-shadow: var(--FlexSlider-box-shadow);
   zoom: 1;
 }
 
