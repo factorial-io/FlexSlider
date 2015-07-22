@@ -45,7 +45,7 @@
   "backend": {
     "template": "flex-slider.tpl.haml",
     "arguments": {
-      "options": {},
+      "data_options": {},
       "items": [
         "<img src='http://www.fillmurray.com/1024/768'>",
         "<img src='http://www.fillmurray.com/1024/768'>",
