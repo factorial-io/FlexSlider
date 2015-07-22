@@ -34,5 +34,18 @@
   "license": "GPLv2 and later",
   "dependencies": {
     "components/jquery": "1.11.3"
+  },
+  "templates": "flex-slider.tpl.haml",
+  "backend": {
+    "template": "flex-slider.tpl.haml",
+    "arguments": {
+      "options": {},
+      "items": [
+        "<img src='http://www.fillmurray.com/1024/768'>",
+        "<img src='http://www.fillmurray.com/1024/768'>",
+        "<img src='http://www.fillmurray.com/1024/768'>",
+        "<img src='http://www.fillmurray.com/1024/768'>"
+      ]
+    }
   }
 }
