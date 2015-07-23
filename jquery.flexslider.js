@@ -648,7 +648,7 @@
             };
 
             el.addEventListener('touchstart', onTouchStart, false);
-        }else{
+        } else {
             el.style.msTouchAction = 'none';
             el._gesture = new MSGesture();
             el._gesture.target = el;
@@ -657,7 +657,7 @@
             el.addEventListener('MSGestureChange', onMSGestureChange, false);
             el.addEventListener('MSGestureEnd', onMSGestureEnd, false);
 
-            function onMSPointerDown(e){
+            var onMSPointerDown = function(e) {
                 e.stopPropagation();
                 if (slider.animating) {
                     e.preventDefault();
@@ -675,9 +675,9 @@
                                 (carousel) ? ((slider.itemW + slider.vars.itemMargin) * slider.move) * slider.currentSlide :
                                     (reverse) ? (slider.last - slider.currentSlide + slider.cloneOffset) * cwidth : (slider.currentSlide + slider.cloneOffset) * cwidth;
                 }
-            }
+            };
 
-            function onMSGestureChange(e) {
+            var onMSGestureChange = function(e) {
                 e.stopPropagation();
                 var slider = e.target._slider;
                 if(!slider){
@@ -708,9 +708,9 @@
                         slider.setProps(offset + dx, 'setTouch');
                     }
                 }
-            }
+            };
 
-            function onMSGestureEnd(e) {
+            var onMSGestureEnd = function(e) {
                 e.stopPropagation();
                 var slider = e.target._slider;
                 if(!slider){
@@ -732,7 +732,7 @@
                 dx = null;
                 offset = null;
                 accDx = 0;
-            }
+            };
         }
       },
       resize: function() {
