@@ -1,6 +1,6 @@
 {
   "name": "flexslider",
-  "version": "2.5.12",
+  "version": "2.5.13",
   "description": "An awesome, fully responsive jQuery slider toolkit.",
   "main": "jquery.flexslider.js",
   "scripts": {
