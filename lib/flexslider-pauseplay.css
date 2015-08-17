@@ -21,7 +21,7 @@
 }
 
 .FlexSliderPausePlay-link:before {
-  font-family: var(--FlexSlider-font-name);
+  font-family: 'var(--FlexSlider-font-name)';
   font-size: 20px;
   display: inline-block;
 }

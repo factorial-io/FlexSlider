@@ -1,14 +1,9 @@
 /** @define FlexSlider; use strict */
 
 :root {
-  --FlexSlider-font-name: "flexslider-icon";
-  --FlexSlider-font-path: "fonts";
-  --FlexSlider-font-file-name: "flexslider-icon";
-  --FlexSlider-font-src-fallback: url('flexslider/fonts/flexslider-icon.eot');
-  --FlexSlider-font-src-complete: url('flexslider/fonts/flexslider-icon.eot?#iefix') format('embedded-opentype'),
-    url('flexslider/fonts/flexslider-icon.woff') format('woff'),
-    url('flexslider/fonts/flexslider-icon.ttf') format('truetype'),
-    url('flexslider/fonts/flexslider-icon.svg#flexslider-icon') format('svg');
+  --FlexSlider-font-name: flexslider-icon;
+  --FlexSlider-font-file-name: var(--FlexSlider-font-name);
+  --FlexSlider-font-src-path: flexslider/fonts/;
 }
 
 /*
@@ -16,9 +11,11 @@
  */
 
 @font-face {
-  font-family: var(--FlexSlider-font-name);
-  src: var(--FlexSlider-font-src-fallback);
-  src: var(--FlexSlider-font-src-complete);
-  font-weight: normal;
+  font-family: 'var(--FlexSlider-font-name)';
+  src: url('var(--FlexSlider-font-src-path)var(--FlexSlider-font-name).eot');
+  src: url('var(--FlexSlider-font-src-path)var(--FlexSlider-font-name).eot?#iefix') format('embedded-opentype'),
+    url('var(--FlexSlider-font-src-path)var(--FlexSlider-font-name).woff') format('woff'),
+    url('var(--FlexSlider-font-src-path)var(--FlexSlider-font-name).ttf') format('truetype'),
+    url('var(--FlexSlider-font-src-path)var(--FlexSlider-font-name).svg#var(--FlexSlider-font-file-name)') format('svg')  font-weight: normal;
   font-style: normal;
 }

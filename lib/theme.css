@@ -67,7 +67,7 @@
 }
 
 .FlexSlider-directionNav a:before {
-  font-family: var(--FlexSlider-font-name);
+  font-family: 'var(--FlexSlider-font-name)';
   font-size: 40px;
   display: inline-block;
   content: var(--FlexSliderDirection-icon-prev);
