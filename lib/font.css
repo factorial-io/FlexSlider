@@ -6,10 +6,6 @@
   --FlexSlider-font-src-path: flexslider/fonts/;
 }
 
-/*
- * FIXME: File Paths!
- */
-
 @font-face {
   font-family: 'var(--FlexSlider-font-name)';
   src: url('var(--FlexSlider-font-src-path)var(--FlexSlider-font-name).eot');
