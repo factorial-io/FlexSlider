@@ -46,10 +46,10 @@
     "template": "flex-slider.tpl.haml",
     "fixture": {
       "items": [
-        "<img src='https://unsplash.it/1200/1024/?random'>",
-        "<img src='https://unsplash.it/1200/1024/?random'>",
-        "<img src='https://unsplash.it/1200/1024/?random'>",
-        "<img src='https://unsplash.it/1200/1024/?random'>"
+        "<img src='https://unsplash.it/1200/1024/?random&time=1'>",
+        "<img src='https://unsplash.it/1200/1024/?random&time=2'>",
+        "<img src='https://unsplash.it/1200/1024/?random&time=3'>",
+        "<img src='https://unsplash.it/1200/1024/?random&time=4'>"
       ]
     },
     "options": {
