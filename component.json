@@ -40,10 +40,14 @@
     "components/jquery": "1.11.3"
   },
   "templates": [
-    "flex-slider.tpl.haml"
+    "flex-slider.tpl.haml",
+    "flex-slider.tpl.php"
   ],
   "backend": {
-    "template": "flex-slider.tpl.haml",
+    "template": [
+      "flex-slider.tpl.haml",
+      "flex-slider.tpl.php"
+    ],
     "fixture": {
       "items": [
         "<img src='http://www.fillmurray.com/1024/768'>",
@@ -53,7 +57,22 @@
       ]
     },
     "options": {
-      "data_options": {}
+      "data_options": {
+      }
+    },
+    "variants": {
+      "data_options": [
+        {
+          "data_options": { 
+            "animation": "slide" 
+          }
+        },
+        {
+          "data_options": {
+            "animation": "fade"
+          }
+        }
+      ]
     }
   }
 }
