@@ -1,20 +1,24 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<title>Test [component] - SUIT CSS</title>
-<meta name="viewport" content="initial-scale=1,width=device-width">
-<link rel="stylesheet" href="../build/test.css">
-<link rel="stylesheet" href="../build/build.css">
-<style>
-  body {
-    overflow-x: hidden;
-  }
-</style>
+<head>
+  <meta charset="utf-8" />
+  <title>Test [component] - SUIT CSS</title>
+  <meta name="viewport" content="initial-scale=1,width=device-width">
+  <link rel="stylesheet" href="../build/test.css">
+  <link rel="stylesheet" href="../build/build.css">
+  <style>
+    body {
+      overflow-x: hidden;
+    }
+  </style>
 
-<!-- <script src="../build/build.js"></script> -->
+  <!-- <script src="../build/build.js"></script> -->
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.min.js">\x3C/script>')</script>
-<script defer src="../jquery.flexslider.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.min.js">\x3C/script>')</script>
+  <script defer src="../jquery.flexslider.js"></script>
+</head>
+<body>
+
 <div class="Test">
   <h1 class="Test-title">SUIT CSS: <a href="https://github.com/factorial-io/FlexSlider">FlexSlider</a> component tests</h1>
 
@@ -411,4 +415,17 @@
       </ul>
     </div>
   </div>
+
+  <h3 class="Test-it">Doesn't render pagination items with only one slide.</h3>
+  <div class="Test-run" id="i">
+    <div class="FlexSlider js-FlexSlider">
+      <ul class="FlexSlider-slides">
+        <li class="FlexSlider-slide">
+          <img src="../demo/images/kitchen_adventurer_cheesecake_brownie.jpg" />
+        </li>
+      </ul>
+    </div>
+  </div>
+
 </div>
+</body>
