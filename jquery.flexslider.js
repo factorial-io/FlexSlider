@@ -277,16 +277,20 @@
 
           return template;
         },
+
         scaffoldPagination: function() {
           var template;
 
           template = $('<ol class="FlexSliderPagination"></ol>');
-          slider.slides.each(function(index) {
-            var item;
 
-            item = '<a class="FlexSliderPagination-link">' + (index + 1) + '</a>';
-            template.append('<li class="FlexSliderPagination-item">' + item + '</li>');
-          });
+          if (slider.slides.length > 1) {
+            slider.slides.each(function(index) {
+              var item;
+
+              item = '<a class="FlexSliderPagination-link">' + (index + 1) + '</a>';
+              template.append('<li class="FlexSliderPagination-item">' + item + '</li>');
+            });
+          }
 
           return template;
         },
